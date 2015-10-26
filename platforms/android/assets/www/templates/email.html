@@ -1,0 +1,26 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-new">
+        <h1 class="title">Change Email</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeEmail()">Cancel</button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="screen-calm">
+        <form>
+            <div class="list">
+                <label class="item item-input ocean">
+                    <span class="input-label">New Email Address</span>
+                    <input type="email" ng-model="data.email">
+                </label>
+                <label class="item">
+                    <button ng-controller="EmailCtrl" class="button button-block button-calm" ng-click="updateEmail()">Update</button>
+                </label> 
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"><br /><br /><br /><img src="img/logo.png" width="100" /></div>
+                <div class="col"></div>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,38 @@
+<ion-view view-title="Wavey">
+  <ion-content id="main_bg" class="screen-calm">
+      <div class="exclaim">
+          <i class="icon ion-earth placeholder-icon custom-icon-reg"></i><br />Select your region to view spots
+      </div><br />
+    <ion-list>
+        <ion-item ng-repeat=" region in regions" href="#/app/regions/{{region.id}}">
+            {{region.name}}, <span>{{region.country | uppercase}}</span>
+        </ion-item>
+    </ion-list>
+      <div ng-show="!isLoggedIn">
+      <div class="exclaim">
+          <i class="icon ion-android-favorite-outline placeholder-icon custom-icon-fav"></i><br />Save spots for quick access
+      </div><br />
+      <ion-list>
+          <ion-item ng-click="login()">
+              <i class="icon ion-checkmark-circled placeholder-icon custom-icon"></i>Sign in
+          </ion-item>
+          <ion-item ng-controller="SignupCtrl" ng-click="signup()">
+              <i class="icon ion-person-add placeholder-icon custom-icon"></i>Sign up
+          </ion-item>
+      </ion-list>
+      </div>
+      <div ng-show="isLoggedIn">
+          <div class="exclaim">
+              <i class="icon ion-heart-broken placeholder-icon custom-icon-fav"></i><br />No report for your beach?
+          </div><br />
+          <ion-list>
+              <ion-item ng-controller="AddSpotCtrl" ng-click="addspot()">
+                  <i class="icon ion-plus-round placeholder-icon custom-icon"></i>Add a spot
+              </ion-item>
+          </ion-list>
+      </div>
+      <br />
+      <br />
+      <br />
+  </ion-content>
+</ion-view>

@@ -1,0 +1,57 @@
+<ion-view view-title="Settings">
+    <ion-content id="settings_bg" class="screen-calm">
+        <ion-list>
+            <!--<div class="row">
+            <div>
+                <img class="mainprofile-pic" src="{{profilepic}}" />
+            </div>
+            <div class="col exclaim" style="font-weight: bold; color: white">
+                <i class="icon ion-android-add-circle placeholder-icon custom-icon-pic"></i>
+            </div>
+        </div>-->
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="exclaim2" style="font-weight: bold;">
+                    <i class="icon ion-person placeholder-icon custom-icon"></i>&nbsp;{{service.user.username}}
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="exclaim2" style="font-weight: bold;">
+                    <i class="icon ion-android-mail placeholder-icon custom-icon"></i>&nbsp;{{service.user.email}}
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <!--<div class="row">
+            <div class="exclaim" style="font-weight: bold;">
+                <i class="icon ion-location placeholder-icon custom-icon"></i>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>-->
+        </ion-list><br />
+        <ion-list>
+            <li class="nav-clear item item-toggle">
+                &nbsp;&nbsp;<i class="icon ion-unlocked placeholder-icon custom-icon"></i>
+                Remember Me
+                <label class="toggle toggle-balanced">
+                    <input type="checkbox" ng-model="rememberMe.checked" ng-change="updateSettings()">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+            <ion-item nav-clear ng-click="changePassword()">
+                <i class="icon ion-key placeholder-icon custom-icon"></i>
+                Change password
+            </ion-item>
+        </ion-list>        
+    </ion-content>
+</ion-view>

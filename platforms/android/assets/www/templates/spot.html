@@ -1,0 +1,109 @@
+<ion-view view-title="How's it looking?">
+    <ion-content id="main_bg" class="screen-calm">
+        <div class="item item-divider">
+            <div class="col spot">&nbsp;&nbsp;{{spot.name}}<span> {{spot.regionName | uppercase}}</span>&nbsp;&nbsp;<i ng-click="toggleFavourite()" class="icon ion-android-favorite placeholder-icon fav-spot" ng-class="isFavourited ? 'custom-icon-fav' : ''"></i></div>
+        </div>
+        <div class="list card">
+            <div>
+                <!-- Sunrise and Sunset - Moon phase -->
+                <div class="row">
+                    <div class="col-10"></div>
+                    <div class="col sky"><span>SUNRISE</span><br /><span>{{sunRise}}</span></div>
+                    <div class="col sky"><i class="icon ion-ios-sunny placeholder-icon custom-icon-sun"></i><i class="icon ion-ios-moon placeholder-icon custom-icon-moon"></i></div>
+                    <div class="col sky"><span>SUNSET</span><br /><span>{{sunSet}}</span></div>
+                    <div class="col-5"></div>
+                </div>
+                <br />
+                <!-- Air temp max, conditions, wind speed -->
+                <div class="row">
+                    <div class="col-10"></div>
+                    <div class="col sky">{{airTemp}}<span>&degC</span></div>
+                    <div class="col sky">{{weatherCondition}}</div>
+                    <div class="col sky">{{windSpeed}}<span> KM/H</span></div>
+                    <div class="col-5"></div>
+                </div>
+                <!-- Wind direction with icon -->
+                <div class="row">
+                    <div class="col-10"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col sky"><img src="img/wind-icon.png" width="30" /> {{windDirection}}</div>
+                    <div class="col-5"></div>
+                </div>
+                <!-- Wave image to seperate Sky from Ocean -->
+                <div class="row">
+                    <div class="col seperator"></div>
+                </div>
+            </div>
+            <div>
+                <!-- Swell direction with icon -->
+                <div class="row">
+                    <div class="col-10"></div>
+                    <div class="col ocean"><img src="img/ovary-clipart-blue-wave-hi.png" width="30" /> {{swellDirection}}</div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col-5"></div>
+                </div>
+                <!-- Water temp, swell period, swell height -->
+                <div class="row">
+                    <div class="col-10"></div>
+                    <div class="col ocean">{{swellHeight}}<span> M</span></div>
+                    <div class="col ocean">{{swellPeriod}}<span> SECS</span></div>
+                    <div class="col ocean">&nbsp;&nbsp;{{waterTemp}}<span>&degC</span></div>
+                    <div class="col-5"></div>
+                </div>
+                <br />
+                <!-- First two tide times -->
+                <div class="row">
+                    <div class="col-7"></div>
+                    <div class="col ocean" id="tide1"><span>{{tideType1}} @</span> {{tideTime1}}</div>
+                    <div class="col-5"></div>
+                    <div class="col ocean" id="tide2"><span>{{tideType2}} @</span> {{tideTime2}}</div>
+                    <div class="col-5"></div>
+                </div>
+                <!-- Second two tide times -->
+                <div class="row">
+                    <div class="col-5"></div>
+                    <div class="col ocean" id="tide3"><span>{{tideType3}} @</span> {{tideTime3}}</div>
+                    <div class="col-5"></div>
+                    <div class="col ocean" id="tide4"><span>{{tideType4}} @</span> {{tideTime4}}</div>
+                    <div class="col-5"></div>
+                </div>
+            </div>
+            <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item" ng-controller="CamCtrl" ng-click="cam()">
+                    <i class="icon ion-camera custom-icon-cam"></i>
+                    Webcam
+                </a>
+                <a class="tab-item" ng-controller="FullReportCtrl" ng-click="fullReport()">
+                    <i class="icon ion-podium custom-icon-for"></i>
+                    Full forecast
+                </a>
+                <!--<a class="tab-item" ng-controller="ReportCtrl" ng-click="report()">
+                    <i class="icon ion-alert-circled custom-icon-rep"></i>
+                    Report issue
+                </a>-->
+            </div>
+            </div>
+            <!-- Buttons, webcam and "save to My Spots"  -->
+            <!--<div class="row">-->
+                <!--  -->
+                <!--<div class="col"></div>
+                <div ng-controller="CamCtrl" ng-click="cam()" class="col camfav"><i class="icon ion-camera placeholder-icon custom-icon-cam"></i></div>-->
+                <!--<div class="col camfav" ng-click="toggleFavourite()" ><i ng-click="toggleFavourite()" class="icon ion-android-favorite placeholder-icon " ng-class="isFavourited ? 'custom-icon-fav' : ''"></i></div>-->
+                <!--<div class="col"></div>
+                <div ng-controller="ReportCtrl" ng-click="report()" class="col camfav"><i class="icon ion-sad placeholder-icon custom-icon-cam"></i></div>
+                <div class="col"></div>
+            </div>-->
+            <!-- Report Issue -->
+            <!--<div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div ng-controller="ReportCtrl" ng-click="report()" class="col rep"><i class="icon ion-alert-circled placeholder-icon custom-icon-rep"></i></div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>-->
+            <!--<br />
+            <br />-->
+</ion-content>
+</ion-view>

@@ -1,0 +1,44 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-new">
+        <h1 class="bar-new title">Report Issue</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeReport()"><i class="icon ion-close-round placeholder-icon custom-icon-close"></i></button>
+        </div>
+    </ion-header-bar>
+    <ion-content id="settings_bg" class="screen-calm">
+        <div class="exclaim">
+            <i class="icon ion-sad-outline placeholder-icon custom-icon-rego"></i><br />Tell us what's wrong
+        </div><br />
+        <form ng-submit="doReport()">
+            <ul class="list">
+                <li class="item item-checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="data.airdata">
+                    </label>
+                    Above sea data is innacurate
+                </li>
+                <li class="item item-checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="data.seadata">
+                    </label>
+                    Below sea data is innacurate
+                </li>
+                <li class="item item-checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="data.cam">
+                    </label>
+                    Webcam down
+                </li>
+                <!-- <li class="item item-checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="data.all">
+                    </label>
+                    All of the above
+                </li> -->
+                <label class="item">
+                    <button class="button button-block button-calm" type="submit">Submit Report</button>
+                </label>
+            </ul>
+        </form>
+    </ion-content>
+</ion-modal-view>

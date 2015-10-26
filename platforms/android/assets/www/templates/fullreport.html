@@ -1,0 +1,373 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-new">
+        <h1 class="title">Full Forecast</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeFullReport()"><i class="icon ion-close-round placeholder-icon custom-icon-close"></i></button>
+        </div>
+    </ion-header-bar>
+    <ion-content id="settings_bg" class="screen-calm">
+      <div class="exclaim">
+          <i class="icon ion-stats-bars placeholder-icon custom-icon-reg"></i><br />
+          5 day forecast<br />
+          Swipe <i class="icon ion-arrow-left-c placeholder-icon custom-icon"></i>
+          <i class="icon ion-arrow-right-c placeholder-icon custom-icon"></i> to view each day
+      </div><br />
+  <ion-slide-box on-slide-changed="slideHasChanged($index)">
+    <!-- DAY 1 -->
+    <ion-slide>
+    <div class="card">
+    <div class="item item-body">
+     <div class="row">
+       <div class="col"></div>
+       <div class="col">Sun</div>
+       <div class="col">Sun</div>
+       <div class="col">Sun</div>
+       <div class="col">Sun</div>
+       <div class="col">Sun</div>
+     </div>
+     <div class="row">
+       <div class="col"><i class="icon ion-clock placeholder-icon custom-icon-rep"></i></div>
+       <div class="col">05h</div>
+       <div class="col">08h</div>
+       <div class="col">11h</div>
+       <div class="col">14h</div>
+       <div class="col">17h</div>
+     </div><br />
+     <div class="row">
+       <div class="col"><img src="img/ovary-clipart-blue-wave-hi.png" width="30" /></div>
+       <div class="col">SW</div>
+       <div class="col">SW</div>
+       <div class="col">SSW</div>
+       <div class="col">SSW</div>
+       <div class="col">SW</div>
+     </div>
+     <div class="row">
+       <div class="col"></div>
+       <div class="col">3.7m</div>
+       <div class="col">3.5m</div>
+       <div class="col">3.2m</div>
+       <div class="col">2.9m</div>
+       <div class="col">2.8m</div>
+     </div>
+     <div class="row">
+       <div class="col"></div>
+       <div class="col">12s</div>
+       <div class="col">12s</div>
+       <div class="col">11s</div>
+       <div class="col">10s</div>
+       <div class="col">10s</div>
+     </div>
+     <div class="row">
+       <div class="col"></div>
+       <div class="col">13&degC</div>
+       <div class="col">13&degC</div>
+       <div class="col">13&degC</div>
+       <div class="col">12&degC</div>
+       <div class="col">12&degC</div>
+     </div><br />
+     <div class="row">
+       <div class="col"><img src="img/wind-icon.png" width="30" /></div>
+       <div class="col">SE</div>
+       <div class="col">SE</div>
+       <div class="col">S</div>
+       <div class="col">S</div>
+       <div class="col">SE</div>
+     </div>
+     <div class="row">
+       <div class="col"></div>
+       <div class="col">15km</div>
+       <div class="col">12km</div>
+       <div class="col">11km</div>
+       <div class="col">10km</div>
+       <div class="col">17km</div>
+     </div>
+   </div>
+ </div>
+   </ion-slide>
+   <!-- DAY 2 -->
+   <ion-slide>
+   <div class="card">
+   <div class="item item-body">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">Mon</div>
+      <div class="col">Mon</div>
+      <div class="col">Mon</div>
+      <div class="col">Mon</div>
+      <div class="col">Mon</div>
+    </div>
+    <div class="row">
+      <div class="col"><i class="icon ion-clock placeholder-icon custom-icon-rep"></i></div>
+      <div class="col">05h</div>
+      <div class="col">08h</div>
+      <div class="col">11h</div>
+      <div class="col">14h</div>
+      <div class="col">17h</div>
+    </div><br />
+    <div class="row">
+      <div class="col"><img src="img/ovary-clipart-blue-wave-hi.png" width="30" /></div>
+      <div class="col">SW</div>
+      <div class="col">SW</div>
+      <div class="col">SSW</div>
+      <div class="col">SSW</div>
+      <div class="col">SW</div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">3.7m</div>
+      <div class="col">3.5m</div>
+      <div class="col">3.2m</div>
+      <div class="col">2.9m</div>
+      <div class="col">2.8m</div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">12s</div>
+      <div class="col">12s</div>
+      <div class="col">11s</div>
+      <div class="col">10s</div>
+      <div class="col">10s</div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">13&degC</div>
+      <div class="col">13&degC</div>
+      <div class="col">13&degC</div>
+      <div class="col">12&degC</div>
+      <div class="col">12&degC</div>
+    </div><br />
+    <div class="row">
+      <div class="col"><img src="img/wind-icon.png" width="30" /></div>
+      <div class="col">SE</div>
+      <div class="col">SE</div>
+      <div class="col">S</div>
+      <div class="col">S</div>
+      <div class="col">SE</div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">15km</div>
+      <div class="col">12km</div>
+      <div class="col">11km</div>
+      <div class="col">10km</div>
+      <div class="col">17km</div>
+    </div>
+  </div>
+</div>
+  </ion-slide>
+  <!-- DAY 3 -->
+  <ion-slide>
+  <div class="card">
+  <div class="item item-body">
+   <div class="row">
+     <div class="col"></div>
+     <div class="col">Tue</div>
+     <div class="col">Tue</div>
+     <div class="col">Tue</div>
+     <div class="col">Tue</div>
+     <div class="col">Tue</div>
+   </div>
+   <div class="row">
+     <div class="col"><i class="icon ion-clock placeholder-icon custom-icon-rep"></i></div>
+     <div class="col">05h</div>
+     <div class="col">08h</div>
+     <div class="col">11h</div>
+     <div class="col">14h</div>
+     <div class="col">17h</div>
+   </div><br />
+   <div class="row">
+     <div class="col"><img src="img/ovary-clipart-blue-wave-hi.png" width="30" /></div>
+     <div class="col">SW</div>
+     <div class="col">SW</div>
+     <div class="col">SSW</div>
+     <div class="col">SSW</div>
+     <div class="col">SW</div>
+   </div>
+   <div class="row">
+     <div class="col"></div>
+     <div class="col">3.7m</div>
+     <div class="col">3.5m</div>
+     <div class="col">3.2m</div>
+     <div class="col">2.9m</div>
+     <div class="col">2.8m</div>
+   </div>
+   <div class="row">
+     <div class="col"></div>
+     <div class="col">12s</div>
+     <div class="col">12s</div>
+     <div class="col">11s</div>
+     <div class="col">10s</div>
+     <div class="col">10s</div>
+   </div>
+   <div class="row">
+     <div class="col"></div>
+     <div class="col">13&degC</div>
+     <div class="col">13&degC</div>
+     <div class="col">13&degC</div>
+     <div class="col">12&degC</div>
+     <div class="col">12&degC</div>
+   </div><br />
+   <div class="row">
+     <div class="col"><img src="img/wind-icon.png" width="30" /></div>
+     <div class="col">SE</div>
+     <div class="col">SE</div>
+     <div class="col">S</div>
+     <div class="col">S</div>
+     <div class="col">SE</div>
+   </div>
+   <div class="row">
+     <div class="col"></div>
+     <div class="col">15km</div>
+     <div class="col">12km</div>
+     <div class="col">11km</div>
+     <div class="col">10km</div>
+     <div class="col">17km</div>
+   </div>
+ </div>
+</div>
+ </ion-slide>
+ <!-- DAY 4 -->
+ <ion-slide>
+ <div class="card">
+ <div class="item item-body">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">Wed</div>
+    <div class="col">Wed</div>
+    <div class="col">Wed</div>
+    <div class="col">Wed</div>
+    <div class="col">Wed</div>
+  </div>
+  <div class="row">
+    <div class="col"><i class="icon ion-clock placeholder-icon custom-icon-rep"></i></div>
+    <div class="col">05h</div>
+    <div class="col">08h</div>
+    <div class="col">11h</div>
+    <div class="col">14h</div>
+    <div class="col">17h</div>
+  </div><br />
+  <div class="row">
+    <div class="col"><img src="img/ovary-clipart-blue-wave-hi.png" width="30" /></div>
+    <div class="col">SW</div>
+    <div class="col">SW</div>
+    <div class="col">SSW</div>
+    <div class="col">SSW</div>
+    <div class="col">SW</div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">3.7m</div>
+    <div class="col">3.5m</div>
+    <div class="col">3.2m</div>
+    <div class="col">2.9m</div>
+    <div class="col">2.8m</div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">12s</div>
+    <div class="col">12s</div>
+    <div class="col">11s</div>
+    <div class="col">10s</div>
+    <div class="col">10s</div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">13&degC</div>
+    <div class="col">13&degC</div>
+    <div class="col">13&degC</div>
+    <div class="col">12&degC</div>
+    <div class="col">12&degC</div>
+  </div><br />
+  <div class="row">
+    <div class="col"><img src="img/wind-icon.png" width="30" /></div>
+    <div class="col">SE</div>
+    <div class="col">SE</div>
+    <div class="col">S</div>
+    <div class="col">S</div>
+    <div class="col">SE</div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">15km</div>
+    <div class="col">12km</div>
+    <div class="col">11km</div>
+    <div class="col">10km</div>
+    <div class="col">17km</div>
+  </div>
+</div>
+</div>
+</ion-slide>
+<!-- DAY 5 -->
+<ion-slide>
+<div class="card">
+<div class="item item-body">
+ <div class="row">
+   <div class="col"></div>
+   <div class="col">Thu</div>
+   <div class="col">Thu</div>
+   <div class="col">Thu</div>
+   <div class="col">Thu</div>
+   <div class="col">Thu</div>
+ </div>
+ <div class="row">
+   <div class="col"><i class="icon ion-clock placeholder-icon custom-icon-rep"></i></div>
+   <div class="col">05h</div>
+   <div class="col">08h</div>
+   <div class="col">11h</div>
+   <div class="col">14h</div>
+   <div class="col">17h</div>
+ </div><br />
+ <div class="row">
+   <div class="col"><img src="img/ovary-clipart-blue-wave-hi.png" width="30" /></div>
+   <div class="col">SW</div>
+   <div class="col">SW</div>
+   <div class="col">SSW</div>
+   <div class="col">SSW</div>
+   <div class="col">SW</div>
+ </div>
+ <div class="row">
+   <div class="col"></div>
+   <div class="col">3.7m</div>
+   <div class="col">3.5m</div>
+   <div class="col">3.2m</div>
+   <div class="col">2.9m</div>
+   <div class="col">2.8m</div>
+ </div>
+ <div class="row">
+   <div class="col"></div>
+   <div class="col">12s</div>
+   <div class="col">12s</div>
+   <div class="col">11s</div>
+   <div class="col">10s</div>
+   <div class="col">10s</div>
+ </div>
+ <div class="row">
+   <div class="col"></div>
+   <div class="col">13&degC</div>
+   <div class="col">13&degC</div>
+   <div class="col">13&degC</div>
+   <div class="col">12&degC</div>
+   <div class="col">12&degC</div>
+ </div><br />
+ <div class="row">
+   <div class="col"><img src="img/wind-icon.png" width="30" /></div>
+   <div class="col">SE</div>
+   <div class="col">SE</div>
+   <div class="col">S</div>
+   <div class="col">S</div>
+   <div class="col">SE</div>
+ </div>
+ <div class="row">
+   <div class="col"></div>
+   <div class="col">15km</div>
+   <div class="col">12km</div>
+   <div class="col">11km</div>
+   <div class="col">10km</div>
+   <div class="col">17km</div>
+ </div>
+</div>
+</div>
+</ion-slide>
+</ion-slide-box>
+    </ion-content>
+</ion-modal-view>

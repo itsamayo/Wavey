@@ -1,0 +1,32 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-new">
+        <h1 class="title">Sign in</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeLogin()"><i class="icon ion-close-round placeholder-icon custom-icon-close"></i></button>
+        </div>
+    </ion-header-bar>
+    <ion-content id="settings_bg" class="screen-calm">
+        <div><img class="logo" src="img/logo.png" width="100" /></div>
+        <form>
+            <div class="list">
+                <label class="item item-input sky">
+                    <span class="input-label">Email</span>
+                    <input type="email" ng-model="data.email">
+                </label>
+                <label class="item item-input sky">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="data.password">
+                </label>
+                <label class="item">
+                    <button ng-controller="LoginCtrl" class="button button-block button-calm" ng-click="login()">SIGN IN</button>
+                </label>
+                <div class="exclaim3">
+                Don't have an account?
+                </div><br /> 
+                <label class="item">      
+                    <button ng-controller="SignupCtrl" class="button button-block button-balanced" ng-click="signup()">CREATE ACOUNT</button>        
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

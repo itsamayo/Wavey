@@ -1,0 +1,89 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-new">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-calm ion-navicon" menu-toggle="left"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+      <div class="bar bar-footer" ng-show="isLoggedIn && !isInChat">
+          <a href="#/app/favourites" class="button button-clear pull-left"><i class="icon ion-android-favorite placeholder-icon custom-icon-fav"></i></a>
+          <a href="#/app/settings" class="button button-clear pull-right"><i class="icon ion-gear-a placeholder-icon custom-icon-set"></i></a>
+      </div>
+  </ion-side-menu-content>
+
+    <ion-side-menu side="left">
+        <!--<ion-header-bar class="bar-new">
+            <h1 class="bar-new title">My Menu</h1>
+        </ion-header-bar>-->        
+        <ion-content id="menu_bg" class="screen-menu">
+            <div class="row" ng-show="isLoggedIn">
+                <div class="col"></div>
+                <div class="exclaim" style="font-weight: bold; color: #009ec2">
+                    <i class="icon ion-person placeholder-icon custom-icon-setting"></i>&nbsp;{{service.user.username}}
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div><br />
+            <ion-list>
+                <!-- <ion-item menu-close ng-click="login()" ng-show="!isLoggedIn">
+                    <i class="icon ion-log-in placeholder-icon custom-icon"></i>
+                    Login
+                </ion-item>
+                <ion-item menu-close ng-click="logout()" ng-show="isLoggedIn">
+                    <i class="icon ion-log-in placeholder-icon custom-icon"></i>
+                    Logout
+                </ion-item> -->
+                <ion-item class="menu-reg" menu-close href="#/app/regions">
+                    <i class="icon ion-earth placeholder-icon custom-icon-reg"></i>
+                    Regions
+                </ion-item>
+                <ion-item menu-close href="#/app/favourites" ng-show="isLoggedIn">
+                    <i class="icon ion-android-favorite placeholder-icon custom-icon-fav"></i>
+                    My Spots
+                </ion-item>
+                <ion-item menu-close ng-click="login()" ng-show="!isLoggedIn">
+                    <i class="icon ion-android-favorite placeholder-icon custom-icon-fav"></i>
+                    My Spots
+                </ion-item>
+                <ion-item menu-close href="#/app/boardroom" ng-show="isLoggedIn">
+                    <i class="icon ion-coffee placeholder-icon custom-icon-chat"></i>
+                    The Boardroom
+                </ion-item>
+                <ion-item menu-close ng-click="login()" ng-show="!isLoggedIn">
+                    <i class="icon ion-coffee placeholder-icon custom-icon-chat"></i>
+                    The Boardroom
+                </ion-item>
+                <!--<ion-item menu-close href="#/app/chats" ng-show="isLoggedIn">
+                    <i class="icon ion-chatbubbles placeholder-icon custom-icon-chat"></i>
+                    Chats
+                </ion-item>-->
+                <ion-item menu-close href="#/app/settings" ng-show="isLoggedIn">
+                    <i class="icon ion-gear-a placeholder-icon custom-icon-setmenu"></i>
+                    Settings
+                </ion-item>
+                <ion-item menu-close ng-click="login()" ng-show="!isLoggedIn">
+                    <i class="icon ion-gear-a placeholder-icon custom-icon-setmenu"></i>
+                    Settings
+                </ion-item>
+                <ion-item nav-clear menu-close ng-click="login()" ng-show="!isLoggedIn" style="width: 100%;">
+                    <i class="icon ion-checkmark-circled placeholder-icon custom-icon"></i>
+                    Sign in
+                </ion-item>
+                <ion-item nav-clear menu-close ng-click="logout()" ng-show="isLoggedIn" href="#/app/regions" style="width: 100%;">
+                    <i class="icon ion-close-circled placeholder-icon custom-icon"></i>
+                    Sign out
+                </ion-item>		
+            </ion-list>
+            <br />            
+            <div class="row">
+                <div class="col"></div>
+              <div class="col"><br /><br /><br /><img src="img/logo.png" width="100"/></div>  
+                <div class="col"></div>
+            </div>
+        </ion-content>		
+    </ion-side-menu>
+</ion-side-menus>

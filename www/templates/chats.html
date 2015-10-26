@@ -1,0 +1,28 @@
+<ion-view view-title="Chats">
+    <ion-content class="screen-calm">      
+        <ion-list>
+                <div class="item item-input-inset">
+                    <label class="item-input-wrapper">
+                        <input type="text" placeholder="Find your friends" style="color:black">
+                    </label>
+                    <button class="button button-small">
+                        Search
+                    </button>
+                </div>
+            <!-- RESULT LIST FOR SEARCHING USERS -->
+            <!--<ion-item ng-repeat="" href="#/app/UserMessages">
+                <img ng-click="viewProfile(message)" class="profile-pic left"
+                     ng-src="{{toUser.pic}}" onerror="onProfilePicError(this)" />{{toUser.username}}
+            </ion-item>-->
+            <div class="exclaim">
+                <i class="icon ion-chatbubbles placeholder-icon custom-icon-search"></i>My chats
+            </div><br />
+            <ion-item href="#/app/UserMessages">
+                <img ng-click="viewProfile(message)" class="profile-pic left"
+     ng-src="{{toUser.pic}}" onerror="onProfilePicError(this)" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mr Octopus
+            </ion-item>
+        </ion-list>
+        <br />
+        <br />
+    </ion-content>
+</ion-view>

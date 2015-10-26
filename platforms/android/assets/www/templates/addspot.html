@@ -1,0 +1,48 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-new">
+        <h1 class="bar-new title">Add a new spot</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeAddSpot()"><i class="icon ion-close-round placeholder-icon custom-icon-close"></i></button>
+        </div>
+    </ion-header-bar>
+    <ion-content id="settings_bg" class="screen-calm">
+        <div class="exclaim">
+            <i class="icon ion-happy-outline placeholder-icon custom-icon-rego"></i><br />Send us a request to add your spot
+        </div><br />
+        <form ng-submit="doAddSpot()">
+            <div class="list">
+                <label class="item item-input ocean">
+                    <span class="input-label">Spot Name</span>
+                    <input type="text" ng-model="data.spotName">
+                </label>
+                <label class="item item-input ocean">
+                    <span class="input-label">Region</span>
+                    <input type="text" ng-model="data.region">
+                </label>
+                <label class="item item-input ocean">
+                    <span class="input-label">Country</span>
+                    <input type="text" ng-model="data.country">
+                </label>
+                <!-- <div class="list">
+                    <label class="item item-radio">
+                        <input type="radio" name="group">
+                        <div class="item-content">
+                            Add for all users
+                        </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                    <label class="item item-radio">
+                        <input type="radio" name="group">
+                        <div class="item-content">
+                            Add for me only
+                        </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                </div> -->
+                <label class="item">
+                    <button class="button button-block button-calm" type="submit">Send Request</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

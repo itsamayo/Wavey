@@ -1,5 +1,5 @@
 <ion-view view-title="Boardroom">
-   
+
     <ion-content id="boardroom_bg" has-bouncing="true" class="has-header has-footer screen-calm" delegate-handle="mainScroll">
         <ion-list class="list">
             <li style="background-color: transparent !important; border: none !important; padding-top: 4px !important; padding-bottom: 4px !important;" ng-repeat="msg in messages" ng-class="{'item item-avatar-right item-text-wrap
@@ -16,12 +16,12 @@
         </ion-list>
     </ion-content>
 
-    <div class="bar bar-footer item-input-inset footer-item-input-inset bar-footer">       
+    <div class="bar bar-footer item-input-inset footer-item-input-inset bar-footer">
 	   <label class="item-input-wrapper">
 		   <i class="icon ion-android-chat placeholder-icon"></i>
            <input style="color:#393939;" type="text" placeholder="Enter your message..." ng-model="message" ng-enter="sendMessage()" />
        </label>
-	   <button class="button button-clear button-light ion-android-send icon custom-icon-send" ng-click="sendMessage()"></button>       
+	   <button class="button button-clear button-light ion-android-send icon custom-icon-send" ng-click="sendMessage()"></button>
     </div>
 
       </ion-view>

@@ -511,8 +511,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
     Socket.on("Message", function (data) {
 
-        data.message = fillWithEmoticons(data.message);
-        data.message = $sce.trustAsHtml(data.message);
+        //data.message = fillWithEmoticons(data.message);
+      //  data.message = $sce.trustAsHtml(data.message);
         $scope.messages.push(data);
 
         //if ($scope.socketId == data.socketId)
@@ -556,9 +556,9 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
         $scope.message = '';
     }
 
-    var fillWithEmoticons = function (message) {
-        message = message.replace(/\(y\)/g, "<img src='img/emoticons/grin.png' width='20px' height='20px'/>")
-        return message;
-    }
+  //  var fillWithEmoticons = function (message) {
+  //      message = message.replace(/\(y\)/g, "<img src='img/emoticons/grin.png' width='20px' height='20px'/>")
+//        return message;
+//    }
 
 });

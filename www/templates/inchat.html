@@ -2,12 +2,15 @@
 
     <ion-content id="boardroom_bg" has-bouncing="true" class="has-header has-footer screen-calm" delegate-handle="mainScroll">
         <ion-list class="list">
-            <li style="background-color: transparent !important; border: none !important; padding-top: 4px !important; padding-bottom: 4px !important;" ng-repeat="msg in messages" ng-class="{'item item-avatar-right item-text-wrap
-		    nopadding': (socketId == msg.socketId) && !msg.isLog, 'item item-avatar-left item-text-
-		    wrap nopadding': (socketId != msg.socketId) && !msg.isLog, 'item item-divider noPadding
-		    noBg' : msg.isLog}">
-                <div ng-class="{'bubbleRight': (socketId == msg.socketId) && !msg.isLog ,
-			    'bubbleLeft': (socketId != msg.socketId) && !msg.isLog}">
+            <li style="background-color: transparent !important; border: none !important; padding-top: 4px !important; padding-bottom: 4px !important;"
+                ng-repeat="msg in messages" ng-class="{
+                  'item item-avatar-right nopadding': (socketId == msg.socketId) && !msg.isLog,
+                  'item item-avatar-left nopadding': (socketId != msg.socketId) && !msg.isLog, 
+                  'item item-divider noPadding noBg' : msg.isLog
+                   }">
+                <div ng-class="{
+                  'bubbleRight item-text-wrap': (socketId == msg.socketId) && !msg.isLog ,
+			            'bubbleLeft item-text-wrap': (socketId != msg.socketId) && !msg.isLog}">
                     <h2 ng-hide="msg.isLog"><b>{{msg.sender}}:</b></h2>
                      <p ng-hide="msg.isLog" ng-bind-html="msg.message"></p>
                      <center><p style="color:#393939;" ng-show="msg.isLog">{{msg.message}}</p></center>

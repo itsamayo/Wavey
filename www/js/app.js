@@ -153,7 +153,7 @@ app.run(function ($ionicPlatform, $ionicPopup) {
 });
 
 app.factory('Socket', function (socketFactory) {
-    var myIoSocket = io.connect('https://wavey.azurewebsites.net/');
+    var myIoSocket = io.connect('https://wavey-ashketchumza.c9.io/');
 
     mySocket = socketFactory({
         ioSocket: myIoSocket

@@ -3,15 +3,13 @@ angular.module('elastichat', ['monospaced.elastic', 'angularMoment'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-  .state('app.UserMessages', {
-      url: '/UserMessages',
-      views: {
-          'menuContent': {
-              templateUrl: 'templates/chat.html',
-              controller: 'UserMessagesCtrl'
-          }
-      }     
+  .state('UserMessages', {
+    url: '/UserMessages',
+    templateUrl: 'templates/UserMessages.html',
+    controller: 'UserMessagesCtrl'
   });
+
+  $urlRouterProvider.otherwise('/UserMessages');
 })
 
 .controller('UserMessagesCtrl', ['$scope', '$rootScope', '$state',
@@ -19,20 +17,20 @@ angular.module('elastichat', ['monospaced.elastic', 'angularMoment'])
   '$ionicPopup', '$ionicScrollDelegate', '$timeout', '$interval',
   function($scope, $rootScope, $state, $stateParams, MockService,
     $ionicActionSheet,
-    $ionicPopup, $ionicScrollDelegate, $timeout, $interval) {      
+    $ionicPopup, $ionicScrollDelegate, $timeout, $interval) {
 
     // mock acquiring data via $stateParams
     $scope.toUser = {
       _id: '534b8e5aaa5e7afc1b23e69b',
-      pic: 'http://ashleysanders.co.za/img/profilesmall.png',
-      username: 'Mr Octopus'
+      pic: 'http://ionicframework.com/img/docs/venkman.jpg',
+      username: 'Venkman'
     }
 
     // this could be on $rootScope rather than in $stateParams
     $scope.user = {
       _id: '534b8fb2aa5e7afc1b23e69c',
-      pic: 'http://ashleysanders.co.za/img/profile.png',
-      username: 'Me'
+      pic: 'http://ionicframework.com/img/docs/mcfly.jpg',
+      username: 'Marty'
     };
 
     $scope.input = {
@@ -50,7 +48,7 @@ angular.module('elastichat', ['monospaced.elastic', 'angularMoment'])
       console.log('UserMessages $ionicView.enter');
 
       getMessages();
-      
+
       $timeout(function() {
         footerBar = document.body.querySelector('#userMessagesView .bar-footer');
         scroller = document.body.querySelector('#userMessagesView .scroll-content');
@@ -107,7 +105,7 @@ angular.module('elastichat', ['monospaced.elastic', 'angularMoment'])
       // you can't see the effect of this in the browser it needs to be used on a real device
       // for some reason the one time blur event is not firing in the browser but does on devices
       keepKeyboardOpen();
-      
+
       //MockService.sendMessage(message).then(function(data) {
       $scope.input.message = '';
 
@@ -132,7 +130,7 @@ angular.module('elastichat', ['monospaced.elastic', 'angularMoment'])
 
       //});
     };
-    
+
     // this keeps the keyboard open on a device only after sending a message, it is non obtrusive
     function keepKeyboardOpen() {
       console.log('keepKeyboardOpen');
@@ -166,7 +164,7 @@ angular.module('elastichat', ['monospaced.elastic', 'angularMoment'])
 
               break;
           }
-          
+
           return true;
         }
       });
@@ -180,22 +178,22 @@ angular.module('elastichat', ['monospaced.elastic', 'angularMoment'])
         // go to other users profile
       }
     };
-    
+
     // I emit this event from the monospaced.elastic directive, read line 480
     $scope.$on('taResize', function(e, ta) {
       console.log('taResize');
       if (!ta) return;
-      
+
       var taHeight = ta[0].offsetHeight;
       console.log('taHeight: ' + taHeight);
-      
+
       if (!footerBar) return;
-      
+
       var newFooterHeight = taHeight + 10;
       newFooterHeight = (newFooterHeight > 44) ? newFooterHeight : 44;
-      
+
       footerBar.style.height = newFooterHeight + 'px';
-      scroller.style.bottom = newFooterHeight + 'px'; 
+      scroller.style.bottom = newFooterHeight + 'px';
     });
 
 }])
@@ -217,11 +215,11 @@ angular.module('elastichat', ['monospaced.elastic', 'angularMoment'])
       });
       */
       var deferred = $q.defer();
-      
+
 		 setTimeout(function() {
       	deferred.resolve(getMockMessages());
 	    }, 1500);
-      
+
       return deferred.promise;
     };
 
@@ -478,7 +476,7 @@ angular.module('monospaced.elastic', [])
                 ta.style.height = mirrorHeight + 'px';
                 scope.$emit('elastic:resize', $ta);
               }
-              
+
               scope.$emit('taResize', $ta); // listen to this in the UserMessagesCtrl
 
               // small delay to prevent an infinite loop

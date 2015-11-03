@@ -5,7 +5,7 @@
             <li style="background-color: transparent !important; border: none !important; padding-top: 4px !important; padding-bottom: 4px !important;"
                 ng-repeat="msg in messages" ng-class="{
                   'item item-avatar-right nopadding': (socketId == msg.socketId) && !msg.isLog,
-                  'item item-avatar-left nopadding': (socketId != msg.socketId) && !msg.isLog, 
+                  'item item-avatar-left nopadding': (socketId != msg.socketId) && !msg.isLog,
                   'item item-divider noPadding noBg' : msg.isLog
                    }">
                 <div ng-class="{

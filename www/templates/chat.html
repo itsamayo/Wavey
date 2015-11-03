@@ -1,13 +1,14 @@
 <ion-view id="userMessagesView"
           cache-view="false"
-          view-title="<div class='msg-header-username'>{{toUser.username}}</div>">
+          view-title="<i class='icon ion-chatbubble user-messages-top-icon'></i> <div class='msg-header-username'>{{toUser.username}}</div>">
+
         <div class="loader-center" ng-if="!doneLoading">
             <div class="loader">
               <i class="icon ion-loading-c"></i>
             </div>
         </div>
 
-          <ion-content has-bouncing="true" class="has-header has-footer screen-calm"
+          <ion-content has-bouncing="true" class="has-header has-footer"
               delegate-handle="userMessageScroll">
 
               <div ng-repeat="message in messages" class="message-wrapper"
@@ -20,13 +21,13 @@
 
                       <div class="chat-bubble left">
 
+                          <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+                          </div>
+
                           <div class="message-detail">
                               <span ng-click="viewProfile(message)"
                                   class="bold">{{toUser.username}}</span>,
                               <span am-time-ago="message.date"></span>
-                          </div>
-
-                          <div class="message" ng-bind-html="message.text | nl2br" autolinker>
                           </div>
 
                       </div>
@@ -39,13 +40,13 @@
 
                       <div class="chat-bubble right">
 
+                          <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+                          </div>
+
                           <div class="message-detail">
                               <span ng-click="viewProfile(message)"
                                   class="bold">{{user.username}}</span>,
                               <span am-time-ago="message.date"></span>
-                          </div>
-
-                          <div class="message" ng-bind-html="message.text | nl2br" autolinker>
                           </div>
 
                       </div>
@@ -58,13 +59,14 @@
           </ion-content>
 
           <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate>
-              <ion-footer-bar class="bar-footer item-input-inset message-footer" keyboard-attach>
-                  <label class="item-input-wrapper ocean">
-                      <input style="color:black" type="text" ng-model="input.message" value="" placeholder="Send {{toUser.username}} a message..." required minlength="1" maxlength="1500" msd-elastic>
+              <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+                  <label class="item-input-wrapper">
+                      <textarea style="width:100%;" ng-model="input.message" value="" placeholder="Send {{toUser.username}} a message..." required minlength="1" maxlength="1500" msd-elastic></textarea>
                   </label>
                   <div class="footer-btn-wrap">
-                      <button class="button button-icon icon ion-android-send footer-btn" type="submit"
-                              ng-disabled="!input.message || input.message === ''"></button>
+                    <button class="button button-icon icon ion-android-send footer-btn" type="submit"
+                        ng-disabled="!input.message || input.message === ''">
+                    </button>
                   </div>
               </ion-footer-bar>
           </form>

@@ -32,6 +32,16 @@ app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
         }
     })
 
+    .state('app.chat', {
+        url: "/chat",
+        views: {
+          'menuContent': {
+              templateUrl: "templates/chat.html",
+              controller: "UserMessagesCtrl"
+           }
+        }
+    })
+
     .state('app.inchat', {
         url: '/inchat/:username',
         views: {

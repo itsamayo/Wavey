@@ -1,4 +1,5 @@
 ﻿var _PremiumApiBaseURL = 'http://api.worldweatheronline.com/premium/v1/';
+
 /*
     Please change the PremiumAPIKey to your own.
     These keys have been provided for testing only.

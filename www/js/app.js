@@ -163,7 +163,7 @@ app.run(function ($ionicPlatform, $ionicPopup) {
 });
 
 app.factory('Socket', function (socketFactory) {
-    var myIoSocket = io.connect('https://static-chat-ashketchumza.c9users.io/');
+    var myIoSocket = io.connect('https://chatap.azurewebsites.net/');
 
     mySocket = socketFactory({
         ioSocket: myIoSocket

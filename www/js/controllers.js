@@ -268,17 +268,55 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
     SpotsService.getMarineWeather($scope.spot).success(function (marineWeather) {
 
-        // Weather data
+        // Sunrise 
         $scope.sunRise = marineWeather.data.weather[0].astronomy[0].sunrise;
+
+        // Sunset 
         $scope.sunSet = marineWeather.data.weather[0].astronomy[0].sunset;
+
+        // Air temp
         $scope.airTemp = marineWeather.data.weather[0].hourly[0].tempC;
+
+        // Weather conditions
         $scope.weatherCondition = marineWeather.data.weather[0].hourly[0].weatherDesc[0].value;
-        $scope.windSpeed = marineWeather.data.weather[0].hourly[0].windspeedKmph;
-        $scope.windDirection = marineWeather.data.weather[0].hourly[0].winddir16Point;
-        $scope.swellDirection = marineWeather.data.weather[0].hourly[0].swellDir16Point;
+
+        // Wind speed
+        $scope.windSpeed0 = marineWeather.data.weather[0].hourly[0].windspeedKmph;
+        $scope.windSpeed1 = marineWeather.data.weather[0].hourly[3].windspeedKmph;
+        $scope.windSpeed2 = marineWeather.data.weather[0].hourly[6].windspeedKmph;
+        $scope.windSpeed3 = marineWeather.data.weather[0].hourly[0].windspeedKmph;
+        $scope.windSpeed4 = marineWeather.data.weather[0].hourly[0].windspeedKmph;
+
+        // Wind direction
+        $scope.windDirection0 = marineWeather.data.weather[0].hourly[0].winddir16Point;
+        $scope.windDirection1 = marineWeather.data.weather[0].hourly[3].winddir16Point;
+        $scope.windDirection2 = marineWeather.data.weather[0].hourly[6].winddir16Point;
+        $scope.windDirection3 = marineWeather.data.weather[0].hourly[0].winddir16Point;
+        $scope.windDirection4 = marineWeather.data.weather[0].hourly[0].winddir16Point;
+
+        // Swell direction
+        $scope.swellDirection0 = marineWeather.data.weather[0].hourly[0].swellDir16Point;
+        $scope.swellDirection1 = marineWeather.data.weather[0].hourly[3].swellDir16Point;
+        $scope.swellDirection2 = marineWeather.data.weather[0].hourly[6].swellDir16Point;
+        $scope.swellDirection3 = marineWeather.data.weather[0].hourly[0].swellDir16Point;
+        $scope.swellDirection4 = marineWeather.data.weather[0].hourly[0].swellDir16Point;
+
+        // Water temp
         $scope.waterTemp = marineWeather.data.weather[0].hourly[0].waterTemp_C;
-        $scope.swellPeriod = marineWeather.data.weather[0].hourly[0].swellPeriod_secs;
-        $scope.swellHeight = marineWeather.data.weather[0].hourly[0].swellHeight_m;
+
+        // Swell period
+        $scope.swellPeriod0 = marineWeather.data.weather[0].hourly[0].swellPeriod_secs;
+        $scope.swellPeriod1 = marineWeather.data.weather[0].hourly[0].swellPeriod_secs;
+        $scope.swellPeriod2 = marineWeather.data.weather[0].hourly[0].swellPeriod_secs;
+        $scope.swellPeriod3 = marineWeather.data.weather[0].hourly[0].swellPeriod_secs;
+        $scope.swellPeriod4 = marineWeather.data.weather[0].hourly[0].swellPeriod_secs;
+
+        // Swell height
+        $scope.swellHeight0 = marineWeather.data.weather[0].hourly[0].swellHeight_m;
+        $scope.swellHeight1 = marineWeather.data.weather[0].hourly[3].swellHeight_m;
+        $scope.swellHeight2 = marineWeather.data.weather[0].hourly[6].swellHeight_m;
+        $scope.swellHeight3 = marineWeather.data.weather[0].hourly[0].swellHeight_m;
+        $scope.swellHeight4 = marineWeather.data.weather[0].hourly[0].swellHeight_m;
 
         // Check if there is tide data
         try {

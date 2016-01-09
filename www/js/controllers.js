@@ -489,77 +489,150 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
 })
 
-.controller('ChatCtrl', function ($scope, $stateParams, Socket, $ionicScrollDelegate, $sce) {
-    console.log('$stateParams: ', $stateParams);
-    console.log('UserMessagesCtrl, username: ', $stateParams.username);
+.controller('ChatCtrl', function($scope, $timeout, $stateParams, Socket, $ionicScrollDelegate, $sce, $cordovaMedia){
 
+    $scope.status_message = "Welcome to ChatApp";
     $scope.messages = [];
     $scope.nickname = $stateParams.username;
 
-    // Log messages from socket.io server
-    Socket.on("connect", function () {
+    var COLORS = ['#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#009688'];
+
+    Socket.on("connect", function(){
         $scope.socketId = this.id;
         var data = {
-            message: $scope.nickname + " has joined!",
-            sender: $scope.nickname,
-            socketId: $scope.socketId,
-            isLog: true
-        };
+                      message: $scope.nickname + " has joined the chat!", 
+                      sender: $scope.nickname, 
+                      socketId: $scope.socketId, 
+                      isLog: true,
+                      color : $scope.getUsernameColor($scope.nickname)
+                    };
+        
 
         Socket.emit("Message", data);
 
     });
 
-    Socket.on("Message", function (data) {
+    Socket.on("Message", function(data){
+      
+      data.message = fillWithEmoticons(data.message);
+      data.message = $sce.trustAsHtml(data.message);
+      $scope.messages.push(data);
 
-        //data.message = fillWithEmoticons(data.message);
-      //  data.message = $sce.trustAsHtml(data.message);
-        $scope.messages.push(data);
+      // if($scope.socketId == data.socketId)
+      //   playAudio("audio/outgoing.mp3");
+      // else
+      //   playAudio("audio/incoming.mp3");
 
-        //if ($scope.socketId == data.socketId)
-        //    playAudio("audio/incoming.mp3");
-        //else
-        //    playAudio("audio/outgoing.mp3");
-
-        $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
+      $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
     })
 
-    // SEND AND RECEIVE MESSAGE SOUNDS
-    //var playAudio = function (src) {
-    //    if (ionic.Platform.isAndroid() || ionic.Platform.isIOS()) {
-    //        var newUrl = '';
-    //        if (ionic.Platform.isAndroid()) {
-    //            newUrl = "/android_asset/www/" + src;
-    //        }
-    //        else
-    //            newUrl = src;
+    var typing = false;
+    var TYPING_TIMER_LENGTH = 2000;
 
-    //        var media = new Media(newUrl, null, null, null);
-    //        media.play();
-    //    }
-    //    else {
-    //        new Audio(src).play();
-    //    }
-    //}
+    $scope.updateTyping = function(){
+      if(!typing){
+        typing = true;
+        Socket.emit("typing", {socketId: $scope.socketId, sender: $scope.nickname});
+      }
 
-    //Chat messaging functionality
-    $scope.sendMessage = function () {
-        if ($scope.message.length == 0)
-            return;
-        var newMessage = { sender: '', message: '', socketId: '', isLog: false };
-        newMessage.sender = $scope.nickname;
-        newMessage.message = $scope.message;
-        newMessage.socketId = $scope.socketId;
-        newMessage.isLog = false;
+      lastTypingTime = (new Date()).getTime();
 
-        Socket.emit("Message", newMessage);
+      $timeout(function(){
+        var timeDiff = (new Date()).getTime() - lastTypingTime;
 
-        $scope.message = '';
+        if(timeDiff >= TYPING_TIMER_LENGTH && typing){
+          Socket.emit('stop typing', {socketId: $scope.socketId, sender: $scope.nickname});
+          typing = false;
+        }
+      }, TYPING_TIMER_LENGTH)
     }
 
-  //  var fillWithEmoticons = function (message) {
-  //      message = message.replace(/\(y\)/g, "<img src='img/emoticons/grin.png' width='20px' height='20px'/>")
-//        return message;
-//    }
+    Socket.on('stop typing', function(data){
+      $scope.status_message = "Welcome to ChatApp";
+    })
 
+    Socket.on('typing', function(data){
+      $scope.status_message = data.sender + " is typing...";
+    })
+
+    // var playAudio = function(src)
+    // {
+    //   if(ionic.Platform.isAndroid() || ionic.Platform.isIOS())
+    //   {
+    //     var newUrl = '';
+    //     if(ionic.Platform.isAndroid()){
+    //       newUrl = "/android_asset/www/" + src;
+    //     }
+    //     else
+    //       newUrl = src;
+
+    //     var media = new Media(newUrl, null, null, null);
+    //     media.play();
+    //   }
+    //   else
+    //   {
+    //     new Audio(src).play();
+    //   }
+    // }
+
+    $scope.sendMessage = function(){
+      if($scope.message.length == 0)
+        return;
+      var newMessage = {sender:'', message:'', socketId:'', isLog:false, color:'' };
+      newMessage.sender = $scope.nickname;
+      newMessage.message = $scope.message;
+      newMessage.socketId = $scope.socketId;
+      newMessage.isLog = false;
+      newMessage.displayPicture = $scope.displayPicture;
+      newMessage.color = $scope.getUsernameColor($scope.nickname);
+
+      Socket.emit("Message", newMessage);
+
+      $scope.message='';
+    }
+
+    var fillWithEmoticons = function(message)
+    { //(y)
+      message = message.replace(/;\)/g, "<img src='img/emoticons/1_27.png' width='20px' height='20px' />");
+      message = message.replace(/\(y\)/g, "<img src='img/emoticons/1_01.png' width='20px' height='20px' />");
+      message = message.replace(/O:\)/g, "<img src='img/emoticons/1_02.png' width='20px' height='20px' />");
+      message = message.replace(/:3/g, "<img src='img/emoticons/1_03.png' width='20px' height='20px' />");
+      message = message.replace(/o.O/g, "<img src='img/emoticons/1_04.png' width='20px' height='20px' />");
+      message = message.replace(/O.o/g, "<img src='img/emoticons/1_05.png' width='20px' height='20px' />");
+      message = message.replace(/:\'\(/g, "<img src='img/emoticons/1_06.png' width='20px' height='20px' />");
+      message = message.replace(/3:\)/g, "<img src='img/emoticons/1_07.png' width='20px' height='20px' />");
+      message = message.replace(/:\(/g, "<img src='img/emoticons/1_08.png' width='20px' height='20px' />");
+      message = message.replace(/:O/g, "<img src='img/emoticons/1_09.png' width='20px' height='20px' />");
+      message = message.replace(/8-\)/g, "<img src='img/emoticons/1_10.png' width='20px' height='20px' />");
+      message = message.replace(/:D/g, "<img src='img/emoticons/1_11.png' width='20px' height='20px' />");
+      message = message.replace(/>:\(/g, "<img src='img/emoticons/1_22.png' width='20px' height='20px' />");
+      message = message.replace(/\<3/g, "<img src='img/emoticons/1_13.png' width='20px' height='20px' />");
+      message = message.replace(/\^_\^/g, "<img src='img/emoticons/1_14.png' width='20px' height='20px' />");
+      message = message.replace(/\:\*/g, "<img src='img/emoticons/1_15.png' width='20px' height='20px' />");
+      message = message.replace(/\:v/g, "<img src='img/emoticons/1_16.png' width='20px' height='20px' />");
+      message = message.replace(/\<\(\"\)/g, "<img src='img/emoticons/1_17.png' width='20px' height='20px' />");
+      message = message.replace(/\:poop\:/g, "<img src='img/emoticons/1_18.png' width='20px' height='20px' />");
+      message = message.replace(/\:putnam\:/g, "<img src='img/emoticons/1_19.png' width='20px' height='20px' />");
+      message = message.replace(/\(\^\^\^\)/g, "<img src='img/emoticons/1_20.png' width='20px' height='20px' />");
+      message = message.replace(/\:\)/g, "<img src='img/emoticons/1_21.png' width='20px' height='20px' />");
+      message = message.replace(/\-\_\-/g, "<img src='img/emoticons/1_22.png' width='20px' height='20px' />");
+      message = message.replace(/8\|/g, "<img src='img/emoticons/1_23.png' width='20px' height='20px' />");
+      message = message.replace(/\:P/g, "<img src='img/emoticons/1_24.png' width='20px' height='20px' />");
+      message = message.replace(/\:\//g, "<img src='img/emoticons/1_25.png' width='20px' height='20px' />");
+      message = message.replace(/\>\:O/g, "<img src='img/emoticons/1_26.png' width='20px' height='20px' />");
+      message = message.replace(/\:\|\]/g, "<img src='img/emoticons/1_28.png' width='20px' height='20px' />");
+      return message;
+    }
+
+    $scope.getUsernameColor = function(username){
+      var hash = 7;
+
+      for(var i=0; i<username.length;i++)
+      {
+        hash = username.charCodeAt(i)+ (hash<<5) - hash;
+      }
+
+      var index = Math.abs(hash % COLORS.length);
+      return COLORS[index];
+    }
 });

@@ -549,12 +549,13 @@ a.autolinker {
 }
 
 .bubbleLeft {
+  margin-left: -40px;
 	position: relative;
 	display: inline-block;
 	max-width: 100%;
 	min-height: 50px;
 	padding: 5px;
-	background: #fff;
+	background: #aeeeff;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -567,7 +568,7 @@ a.autolinker {
 	position: absolute;
 	border-style: solid;
 	border-width: 7px 20px 7px 0;
-	border-color: transparent #fff;
+	border-color: transparent #aeeeff;
 	display: block;
 	width: 0;
 	z-index: 1;
@@ -577,12 +578,15 @@ a.autolinker {
 }
 
 .bubbleRight {
+  text-align: left;
+  margin-right: -40px;
 	position: relative;
 	display: inline-block;
+  min-width: 70px;
 	max-width: 100%;
 	min-height: 50px;
 	padding: 5px;
-	background: #B2DFDB;
+	background: #fff;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -595,7 +599,7 @@ a.autolinker {
 	position: absolute;
 	border-style: solid;
 	border-width: 7px 0 7px 20px;
-	border-color: transparent #B2DFDB;
+	border-color: transparent #fff;
 	display: block;
 	width: 0;
 	z-index: 1;

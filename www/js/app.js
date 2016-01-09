@@ -1,4 +1,4 @@
-var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'elastichat', 'btford.socket-io']);
+var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'btford.socket-io']);
 
 app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
 	/*$httpProvider.interceptors.push(function($rootScope) {
@@ -163,7 +163,7 @@ app.run(function ($ionicPlatform, $ionicPopup) {
 });
 
 app.factory('Socket', function (socketFactory) {
-    var myIoSocket = io.connect('http://37.139.16.48/');
+    var myIoSocket = io.connect('https://static-chat-ashketchumza.c9users.io/');
 
     mySocket = socketFactory({
         ioSocket: myIoSocket

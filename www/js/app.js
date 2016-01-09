@@ -163,7 +163,7 @@ app.run(function ($ionicPlatform, $ionicPopup) {
 });
 
 app.factory('Socket', function (socketFactory) {
-    var myIoSocket = io.connect('https://wavey-ashketchumza.c9.io/');
+    var myIoSocket = io.connect('http://37.139.16.48/');
 
     mySocket = socketFactory({
         ioSocket: myIoSocket

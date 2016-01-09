@@ -267,19 +267,20 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 	};
 
     SpotsService.getMarineWeather($scope.spot).success(function (marineWeather) {
+
+        // Weather data
         $scope.sunRise = marineWeather.data.weather[0].astronomy[0].sunrise;
         $scope.sunSet = marineWeather.data.weather[0].astronomy[0].sunset;
         $scope.airTemp = marineWeather.data.weather[0].hourly[0].tempC;
         $scope.weatherCondition = marineWeather.data.weather[0].hourly[0].weatherDesc[0].value;
         $scope.windSpeed = marineWeather.data.weather[0].hourly[0].windspeedKmph;
         $scope.windDirection = marineWeather.data.weather[0].hourly[0].winddir16Point;
-
         $scope.swellDirection = marineWeather.data.weather[0].hourly[0].swellDir16Point;
         $scope.waterTemp = marineWeather.data.weather[0].hourly[0].waterTemp_C;
         $scope.swellPeriod = marineWeather.data.weather[0].hourly[0].swellPeriod_secs;
         $scope.swellHeight = marineWeather.data.weather[0].hourly[0].swellHeight_m;
 
-        //check if there is tide data
+        // Check if there is tide data
         try {
             var tideData = marineWeather.data.weather[0].tides[0].tide_data;
             $scope.tideType1 = tideData[0].tide_type;

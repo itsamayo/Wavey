@@ -5,7 +5,7 @@
       </div><br />
     <ion-list>
         <ion-item ng-repeat=" region in regions" href="#/app/regions/{{region.id}}">
-            {{region.name}}, <span>{{region.country | uppercase}}</span>
+            {{region.name}}, <span>{{region.country | uppercase}}</span> <i class="icon ion-chevron-right placeholder-icon custom-icon-fav"></i>
         </ion-item>
     </ion-list>
       <div ng-show="!isLoggedIn">

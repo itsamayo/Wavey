@@ -10,7 +10,7 @@ var _PremiumApiKey = 'd25c4047ecaf948185c232e977327';
 //changed name from 'JSONP_MarineWeatherURL' to 'WorldWeatherLine_MarineWeatherURL'
 function WorldWeatherLine_MarineWeatherURL(input) {
     var url = _PremiumApiBaseURL + "marine.ashx?q=" + input.query + "&format=" + input.format + "&fx=" + input.fx + "&tide=" + input.tide + "&key=" + _PremiumApiKey + "&callback=JSON_CALLBACK";
-    //console.log(url);
+    console.log(url);
     return url;
 }
 

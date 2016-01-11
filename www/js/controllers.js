@@ -214,7 +214,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
      $scope.spots = spots;
  })
 
-.controller('SpotCtrl', function ($scope, $http, $ionicPopup, spot, SpotsService, LoginService, LoadingService) {
+.controller('SpotCtrl', function ($scope, $http, $ionicPopup, $ionicModal, spot, SpotsService, LoginService, LoadingService) {
     LoadingService.show();
 
     $scope.$on('spot:toggleFavourite', function (event, data) {
@@ -266,12 +266,22 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
         }
 	};
 
-    SpotsService.getMarineWeather($scope.spot).success(function (marineWeather) {
+  $ionicModal.fromTemplateUrl('templates/fullreport.html', {
+      scope: $scope
+  }).then(function (modal) {
+      $scope.fullReportModal = modal;
+  });
 
-        // Sunrise 
+  $scope.fullReport = function() {
+    $scope.fullReportModal.show();
+  }
+
+    SpotsService.getMarineWeather($scope.spot).success(function (marineWeather) {
+        $scope.marineWeather = marineWeather;
+        // Sunrise
         $scope.sunRise = marineWeather.data.weather[0].astronomy[0].sunrise;
 
-        // Sunset 
+        // Sunset
         $scope.sunSet = marineWeather.data.weather[0].astronomy[0].sunset;
 
         // Air temp
@@ -538,20 +548,20 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     Socket.on("connect", function(){
         $scope.socketId = this.id;
         var data = {
-                      message: $scope.nickname + " has joined the chat!", 
-                      sender: $scope.nickname, 
-                      socketId: $scope.socketId, 
+                      message: $scope.nickname + " has joined the chat!",
+                      sender: $scope.nickname,
+                      socketId: $scope.socketId,
                       isLog: true,
                       color : $scope.getUsernameColor($scope.nickname)
                     };
-        
+
 
         Socket.emit("Message", data);
 
     });
 
     Socket.on("Message", function(data){
-      
+
       data.message = fillWithEmoticons(data.message);
       data.message = $sce.trustAsHtml(data.message);
       $scope.messages.push(data);

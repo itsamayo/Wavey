@@ -1,5 +1,18 @@
 var debug = false;
 
+(function() {
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    Date.prototype.getMonthName = function() {
+        return months[ this.getMonth() ];
+    };
+    Date.prototype.getDayName = function() {
+        return days[ this.getDay() ];
+    };
+})();
+
 function getURL(path) {
     return (debug ? "app/" : "http://wavey.co.za/app/") + path;
 }
@@ -37,7 +50,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 	var service = {
 	    user: { id: -1, username: '', email: '', favourites: [], isLoggedIn: false, rememberMe: false, profilepic: '' }
 	};
-	
+
 	service.loginUser = function (_email, _password) {
 		var deferred = $q.defer();
 		var promise = deferred.promise;
@@ -68,7 +81,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 			else data.message = data;
 			$rootScope.$broadcast('http:error', data);
 		});
-		
+
 		promise.success = function (fn) {
 			promise.then(fn);
 			return promise;
@@ -79,7 +92,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 		}
 		return promise;
 	};
-	
+
 	service.toggleLogin = function(isLoggedIn) {
 		if (!isLoggedIn) {
 			service.user.id = -1;
@@ -132,7 +145,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 	        return promise;
 	    };
 
-        
+
 	    return promise;
 	};
 
@@ -154,7 +167,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 	        }).success(function (data, status, headers, config) {
 	            //console.log(data);
 	            if (!data.error) {
-	                service.user.q = service.user.qq;	                
+	                service.user.q = service.user.qq;
 	                if ($localStorage.rememberMe) {
 	                    $localStorage.password = service.user.q;
 	                }
@@ -185,12 +198,12 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 	    }
 	    return promise;
 	};
-	
+
 	service.signupUser = function (_username, _email, _password, _confirmPassword) {
 		var deferred = $q.defer();
 		var promise = deferred.promise;
 		//check if the password supplied matches the confirm password supplied
-		
+
 		if (_password == _confirmPassword) {
 		    var _data = { username: _username, email: _email, password: _password };
 		    console.log(_data);
@@ -216,7 +229,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 
 				    $rootScope.$broadcast('http:error', data.message);
 				});
-			
+
 		}else {
 			deferred.reject('Passwords do not match.');
 		}
@@ -230,7 +243,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 		}
 		return promise;
 	};
-	
+
 	service.toggleFavourite = function (_spotId) {
 	    var deferred = $q.defer();
 	    var promise = deferred.promise;
@@ -240,7 +253,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 	        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 	        data: $.param({ userId: service.user.id, spotId: _spotId })
 	        //data: $.param({ email: service.user.email, spotId: _spotId })
-	    }).success(function (data, status, headers, config) {	        
+	    }).success(function (data, status, headers, config) {
 	        if (!data.error) {
 	            service.user.favourites = data.favourites;
 	            $rootScope.$broadcast('spot:toggleFavourite', service.user.favourites);
@@ -386,7 +399,7 @@ app.service('SpotsService', function ($q, $filter, $http, $rootScope) {
 		regions: [],
 		spots: []
 	};
-	
+
 	service.downloadData = function () {
 		//get all region and spot data, store it locally
 		$http.get(getURL("regions")).success(function (data) {
@@ -406,20 +419,20 @@ app.service('SpotsService', function ($q, $filter, $http, $rootScope) {
 		    $rootScope.$broadcast('http:error', data);
 		});
 	};
-	
+
 	service.getRegions = function () {
 		return service.regions;
 	};
 	service.getSpot = function (spotId) {
 		var dfd = $q.defer();
-		service.spots.forEach(function(spot) {	
+		service.spots.forEach(function(spot) {
 			if (spot.id == spotId) dfd.resolve(spot);
 		})
 		return dfd.promise
 	};
 	service.getRegion = function (regId) {
 		var dfd = $q.defer();
-		service.regions.forEach(function(region) {	
+		service.regions.forEach(function(region) {
 			if (region.id == regId) dfd.resolve(region);
 		})
 		return dfd.promise
@@ -440,8 +453,10 @@ app.service('SpotsService', function ($q, $filter, $http, $rootScope) {
 	    };
 
 	    var url = WorldWeatherLine_MarineWeatherURL(marineWeatherInput);
+      console.log(url);
 	    $http.jsonp(url).success(function (data, status, headers, config) {
 	        deferred.resolve(data);
+          console.log("DATA", data);
 	    }).error(function (data, status, headers, config) {
 	        if (data == null) data = { exit: false, message: 'Unable to connect to the server. Please check your connection' };
 	        else data.message = data;
@@ -459,6 +474,6 @@ app.service('SpotsService', function ($q, $filter, $http, $rootScope) {
 	    return promise;
 
 	};
-	
+
 	return service;
 });

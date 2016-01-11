@@ -539,9 +539,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
 .controller('ChatCtrl', function($scope, $timeout, $stateParams, Socket, $ionicScrollDelegate, $sce, $cordovaMedia){
 
-    $scope.status_message = "Welcome to ChatApp";
     $scope.messages = [];
+    $scope.region = ['ECT', 'KZN', 'WCT']
     $scope.nickname = $stateParams.username;
+    $scope.status_message = "Welcome " + $stateParams.username;
 
     var COLORS = ['#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#009688'];
 
@@ -596,7 +597,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     }
 
     Socket.on('stop typing', function(data){
-      $scope.status_message = "Welcome to ChatApp";
+      $scope.status_message = "Welcome to";
     })
 
     Socket.on('typing', function(data){

@@ -22,7 +22,7 @@
     <div class="bar bar-footer item-input-inset footer-item-input-inset bar-footer">
 	   <label class="item-input-wrapper">
 		   <i class="icon ion-android-chat placeholder-icon"></i>
-           <input style="color:#393939;" type="text" placeholder="Enter your message..." ng-model="message" ng-enter="sendMessage()" />
+           <input style="color:#393939;" type="text" placeholder="Enter your message..." ng-model="message" ng-change="updateTyping()" ng-enter="sendMessage()" />
        </label>
 	   <button class="button button-clear button-light ion-android-send icon custom-icon-send" ng-click="sendMessage()"></button>
     </div>

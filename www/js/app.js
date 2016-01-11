@@ -1,14 +1,4 @@
-angular.module('App.filters', []).filter('dayFilter', [function(){
-  return function(dayString) {
-    return new Date(dayString).getDayName().substring(0,3);
-  };
-}]).filter('hourFilter', [function(){
-  return function(time) {
-    return ((time < 1000 ? '0' : '') + time).substring(0,2) + 'h';
-  }
-}]);
-
-var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'btford.socket-io', 'App.filters']);
+var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'btford.socket-io']);
 
 app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
 	/*$httpProvider.interceptors.push(function($rootScope) {
@@ -173,7 +163,7 @@ app.run(function ($ionicPlatform, $ionicPopup) {
 });
 
 app.factory('Socket', function (socketFactory) {
-    var myIoSocket = io.connect('https://chatap.azurewebsites.net/');
+    var myIoSocket = io.connect('https://static-chat-ashketchumza.c9users.io/');
 
     mySocket = socketFactory({
         ioSocket: myIoSocket

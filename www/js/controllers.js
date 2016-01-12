@@ -289,9 +289,12 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
       $scope.fullReportModal = modal;
   });
 
-  $scope.fullReport = function() {
-    $scope.fullReportModal.show();
-  }
+  $scope.closeFullReport = function () {
+        $scope.fullReportModal.hide();
+    };
+    $scope.fullReport = function () {
+        $scope.fullReportModal.show();
+    };
 
     SpotsService.getMarineWeather($scope.spot).success(function (marineWeather) {
         $scope.marineWeather = marineWeather;

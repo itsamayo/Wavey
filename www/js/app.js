@@ -1,4 +1,14 @@
-var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'btford.socket-io']);
+angular.module('App.filters', []).filter('dayFilter', [function(){
+  return function(dayString) {
+    return new Date(dayString).getDayName().substring(0,3);
+  };
+}]).filter('hourFilter', [function(){
+  return function(time) {
+    return ((time < 1000 ? '0' : '') + time).substring(0,2) + 'h';
+  }
+}]);
+
+var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'btford.socket-io', 'App.filters']);
 
 app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
 	/*$httpProvider.interceptors.push(function($rootScope) {

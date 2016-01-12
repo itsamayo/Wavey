@@ -1,16 +1,16 @@
 <ion-view view-title="WAVEY">
   <ion-content id="main_bg" class="screen-calm">
       <div class="exclaim">
-          <i class="icon ion-earth placeholder-icon custom-icon-reg"></i><br />Select your region to view spots!
+          <i class="icon ion-earth placeholder-icon custom-icon-reg"></i><br /><br />Choose your area. Find your spot.<br /> View the report
       </div><br />
     <ion-list>
         <ion-item ng-repeat=" region in regions" href="#/app/regions/{{region.id}}">
-            {{region.name}}, <span>{{region.country | uppercase}}</span> <i class="icon ion-chevron-right placeholder-icon custom-icon-fav"></i>
+            {{region.name}}, <span>{{region.country | uppercase}}</span> <i class="icon ion-chevron-right placeholder-icon custom-icon"></i>
         </ion-item>
     </ion-list>
       <div ng-show="!isLoggedIn">
       <div class="exclaim">
-          <i class="icon ion-android-favorite-outline placeholder-icon custom-icon-fav"></i><br />Save spots for quick access
+          <i class="icon ion-android-favorite-outline placeholder-icon custom-icon-fav"></i><br /><br />Save spots for quick access
       </div><br />
       <ion-list>
           <ion-item ng-click="login()">
@@ -23,11 +23,11 @@
       </div>
       <div ng-show="isLoggedIn">
           <div class="exclaim">
-              <i class="icon ion-heart-broken placeholder-icon custom-icon-fav"></i><br />No report for your beach?
+              <i class="icon ion-heart-broken placeholder-icon custom-icon-fav"></i><br /><br />No report for your beach? No problem
           </div><br />
           <ion-list>
               <ion-item ng-controller="AddSpotCtrl" ng-click="addspot()">
-                  <i class="icon ion-plus-round placeholder-icon custom-icon"></i>Add a spot
+                  <span>ADD NEW SPOT</span> <i class="icon ion-plus-round placeholder-icon custom-icon"></i>
               </ion-item>
           </ion-list>
       </div>

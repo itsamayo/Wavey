@@ -7,20 +7,24 @@
     </ion-header-bar>
     <ion-content id="settings_bg" class="screen-calm">
         <div class="exclaim">
-           Send us a request to add your spot
+           <i class="icon ion-earth placeholder-icon custom-icon-reg"></i><br /><br />Send us a request to add a report for your beach by giving us the below info.
         </div><br />
         <form ng-submit="doAddSpot()">
             <div class="list">
                 <label class="item item-input sky">
-                    <span class="input-label">Spot Name</span>
+                    <span class="input-label">BEACH</span><i class="icon ion-chevron-right placeholder-icon custom-icon"></i>
                     <input type="text" ng-model="data.spotName">
                 </label>
+                 <label class="item item-input sky">
+                    <span class="input-label">COORDINATES</span><i class="icon ion-chevron-right placeholder-icon custom-icon"></i>
+                    <input type="text" ng-model="data.coord">
+                </label>
                 <label class="item item-input sky">
-                    <span class="input-label">Region</span>
+                    <span class="input-label">PROVINCE / STATE</span><i class="icon ion-chevron-right placeholder-icon custom-icon"></i>
                     <input type="text" ng-model="data.region">
                 </label>
                 <label class="item item-input sky">
-                    <span class="input-label">Country</span>
+                    <span class="input-label">COUNTRY</span><i class="icon ion-chevron-right placeholder-icon custom-icon"></i>
                     <input type="text" ng-model="data.country">
                 </label>
                 <!-- <div class="list">

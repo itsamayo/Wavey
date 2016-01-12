@@ -103,7 +103,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
 })
 
-.controller('LoginCtrl', function ($scope, LoginService, $ionicPopup, $state, $ionicModal, LoadingService) {
+.controller('LoginCtrl', function ($scope, LoginService, $ionicPopup, $state, $ionicModal, LoadingService, $http, $cordovaOauth) {
     $scope.service = LoginService;
 
     $scope.login = function () {
@@ -120,6 +120,22 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
             });
         });
     }
+
+    $scope.loginWithFacebook = function(){
+    $cordovaOauth.facebook("164560043879041", ["email"]).then(function(result) {
+            //alert(result.access_token);
+            $http.get('https://graph.facebook.com/v2.4/me?fields=id,name,picture&access_token=' + result.access_token)
+            .success(function(data, status, header, config){
+                $scope.user.fullName = data.name;
+                $scope.user.displayPicture = data.picture.data.url;
+                //alert($scope.user.fullName + " " + $scope.user.displayPicture);
+                $state.go('app.inchat', {data: {username: $scope.user.fullName, displayPicture: $scope.user.displayPicture}});
+              })
+        }, function(error) {
+            alert(error);
+        });
+  }
+
 })
 
 .controller('SignupCtrl', function ($scope, LoginService, $ionicPopup, $state, $ionicModal, LoadingService) {
@@ -185,12 +201,13 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
         $scope.data.spotName = '';
         $scope.data.region = '';
         $scope.data.country = '';
+        $scope.data.coord = '';
         //$scope.data.addfor = '';
         $scope.modal.show();
     };
     $scope.doAddSpot = function () {
         LoadingService.show();
-        LoginService.requestAddSpot($scope.data.spotName, $scope.data.region, $scope.data.country)//, $scope.data.addfor)
+        LoginService.requestAddSpot($scope.data.spotName, $scope.data.region, $scope.data.country, $scope.data.coord)//, $scope.data.addfor)
             .success(function (data) {
                 LoadingService.hide();
                 var alertPopup = $ionicPopup.alert({
@@ -549,7 +566,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     Socket.on("connect", function(){
         $scope.socketId = this.id;
         var data = {
-                      message: $scope.nickname + " has joined the chat!",
+                      message: $scope.nickname + " has joined the conversation",
                       sender: $scope.nickname,
                       socketId: $scope.socketId,
                       isLog: true,

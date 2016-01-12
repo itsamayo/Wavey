@@ -19,6 +19,10 @@ color: #009ec2;
   color : #009ec2;
 }
 
+.custom-icon-log {
+  color : #393939;
+}
+
 .custom-icon-close {
   color : #fff;
 }
@@ -69,7 +73,12 @@ custom-icon-forecast {
 }
 
 .custom-icon-reg {
-  color : #00c252;
+  color : #393939;  
+  font-size: 50px;
+}
+
+.custom-icon-regmenu {
+  color : #393939;  
 }
 
 .custom-icon-search {
@@ -100,6 +109,7 @@ custom-icon-forecast {
 
 .custom-icon-chat {
   color : #009ec2;
+  font-size: 50px;
 }
 
 .menu-set {
@@ -108,14 +118,20 @@ custom-icon-forecast {
 
 .custom-icon-rego {
   color : #886aea;
+  font-size: 50px;
 }
 
 .custom-icon-fav {
   color : #db0000;
+  font-size: 50px;
 }
 
-.custom-icon-chat {
-  color : #763600;
+.custom-icon-favmenu {
+  color : #db0000;
+}
+
+.custom-icon-chatmenu {
+  color : #009ec2;
 }
 
 .fav-spot {
@@ -196,7 +212,7 @@ custom-icon-forecast {
     background: #009688 !important;
     border-top-width: 0px;
     color: #fff; }
-    
+
 .item {
     border: none !important;
     background-color: transparent !important;

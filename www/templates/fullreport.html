@@ -13,95 +13,51 @@
           <i class="icon ion-arrow-right-c placeholder-icon custom-icon"></i> to view each day
       </div><br />
   <ion-slide-box on-slide-changed="slideHasChanged($index)">
-    <ion-slide ng-repeat="day in marineWeather.data.weather | limitTo:5:0">
+    <ion-slide ng-repeat="day in marineWeather.data.weather | limitTo:5:2">
     <div class="card">
     <div class="item item-body">
+
+      <table style="width:100%; min-height: 300px;">
+        <tr>
+          <td></td>
+          <td>{{day.date | dayFilter}}</td>
+          <td>{{day.date | dayFilter}}</td> 
+          <td>{{day.date | dayFilter}}</td>
+          <td>{{day.date | dayFilter}}</td>
+          <td>{{day.date | dayFilter}}</td> 
+        </tr>
+        <tr>
+          <td><i class="icon ion-clock placeholder-icon custom-icon-rep"></i></td>
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.time | hourFilter}}</td> 
+        </tr>
+        <tr>
+          <td><img src="img/ovary-clipart-blue-wave-hi.png" width="30" /></td>
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellDir16Point}}</td> 
+        </tr>
+        <tr>
+          <td></td>
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellHeight_m}}</td> 
+        </tr>
+        <tr>
+          <td></td>
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellPeriod_secs}}s</td> 
+        </tr>
+        <tr>
+          <td></td>
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.tempC}}&degC</td> 
+        </tr>
+        <tr>
+          <td><img src="img/wind-icon.png" width="30"/></td>
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.winddir16Point}}</td> 
+        </tr>
+         <tr>
+          <td></td>
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.windspeedKmph}}km</td> 
+        </tr>
+      </table>
+
       <!-- <div ng-repeat="time in day.hourly | limit:2:5"> -->
-     <div class="row">
-       <div class="col"></div>
-       <div class="col">{{day.date | dayFilter}}</div>
-       <div class="col">{{day.date | dayFilter}}</div>
-       <div class="col">{{day.date | dayFilter}}</div>
-       <div class="col">{{day.date | dayFilter}}</div>
-       <div class="col">{{day.date | dayFilter}}</div>
-     </div>
-     <div class="row">
-       <div class="col"><i class="icon ion-clock placeholder-icon custom-icon-rep"></i></div>
-       <div ng-repeat="hour in day.hourly | limitTo:5:0">
-          <div class="col">{{hour.time | hourFilter}}</div>
-        </div>
-       <!-- <div class="col">05h</div>
-       <div class="col">08h</div>
-       <div class="col">11h</div>
-       <div class="col">14h</div>
-       <div class="col">17h</div> -->
-     </div><br />
-     <div class="row">
-       <div class="col"><img src="img/ovary-clipart-blue-wave-hi.png" width="30" /></div>
-       <div ng-repeat="hour in day.hourly | limitTo:5:0">
-          <div class="col">{{hour.swellDir16Point}}</div>
-        </div>
-       <!-- <div class="col">{{swellDirection0}}</div>
-       <div class="col">{{swellDirection1}}</div>
-       <div class="col">{{swellDirection2}}</div>
-       <div class="col">{{swellDirection3}}</div>
-       <div class="col">{{swellDirection4}}</div> -->
-     </div>
-     <div class="row">
-       <div class="col"></div>
-       <div ng-repeat="hour in day.hourly | limitTo:5:0">
-          <div class="col">{{hour.swellHeight_m}}</div>
-        </div>
-       <!-- <div class="col">{{swellHeight0}}</div>
-       <div class="col">{{swellHeight1}}</div>
-       <div class="col">{{swellHeight2}}</div>
-       <div class="col">{{swellHeight3}}</div>
-       <div class="col">{{swellHeight4}}</div> -->
-     </div>
-     <div class="row">
-       <div class="col"></div>
-       <div ng-repeat="hour in day.hourly | limitTo:5:0">
-          <div class="col">{{hour.swellPeriod_secs}}s</div>
-        </div>
-       <!-- <div class="col">12s</div>
-       <div class="col">12s</div>
-       <div class="col">11s</div>
-       <div class="col">10s</div>
-       <div class="col">10s</div> -->
-     </div>
-     <div class="row">
-       <div class="col"></div>
-       <div ng-repeat="hour in day.hourly | limitTo:5:0">
-          <div class="col">{{hour.tempC}}&degC</div>
-        </div>
-       <!-- <div class="col">13&degC</div>
-       <div class="col">13&degC</div>
-       <div class="col">13&degC</div>
-       <div class="col">12&degC</div>
-       <div class="col">12&degC</div> -->
-     </div><br />
-     <div class="row">
-       <div class="col"><img src="img/wind-icon.png" width="30" /></div>
-       <div ng-repeat="hour in day.hourly | limitTo:5:0">
-          <div class="col">{{hour.winddir16Point}}</div>
-        </div>
-       <!-- <div class="col">SE</div>
-       <div class="col">SE</div>
-       <div class="col">S</div>
-       <div class="col">S</div>
-       <div class="col">SE</div> -->
-     </div>
-     <div class="row">
-       <div class="col"></div>
-       <div ng-repeat="hour in day.hourly | limitTo:5:0">
-          <div class="col">{{hour.windspeedKmph}}km</div>
-        </div>
-       <!-- <div class="col">15km</div>
-       <div class="col">12km</div>
-       <div class="col">11km</div>
-       <div class="col">10km</div>
-       <div class="col">17km</div> -->
-     </div>
+    
    </div>
  </div>
    </ion-slide>

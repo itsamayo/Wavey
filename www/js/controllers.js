@@ -121,21 +121,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
         });
     }
 
-    $scope.loginWithFacebook = function(){
-    $cordovaOauth.facebook("164560043879041", ["email"]).then(function(result) {
-            //alert(result.access_token);
-            $http.get('https://graph.facebook.com/v2.4/me?fields=id,name,picture&access_token=' + result.access_token)
-            .success(function(data, status, header, config){
-                $scope.user.fullName = data.name;
-                $scope.user.displayPicture = data.picture.data.url;
-                //alert($scope.user.fullName + " " + $scope.user.displayPicture);
-                $state.go('app.inchat', {data: {username: $scope.user.fullName, displayPicture: $scope.user.displayPicture}});
-              })
-        }, function(error) {
-            alert(error);
-        });
-  }
-
 })
 
 .controller('SignupCtrl', function ($scope, LoginService, $ionicPopup, $state, $ionicModal, LoadingService) {

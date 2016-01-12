@@ -27,7 +27,7 @@
           <td>{{day.date | dayFilter}}</td> 
         </tr>
         <tr>
-          <td><i class="icon ion-clock placeholder-icon custom-icon-rep"></i></td>
+          <td></td>
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.time | hourFilter}}</td> 
         </tr>
         <tr>

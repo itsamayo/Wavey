@@ -185,7 +185,7 @@ app.run(function ($ionicPlatform, $ionicPopup) {
 });
 
 app.factory('Socket', function (socketFactory, _) {
-    var socket = { rooms: [], serverSocket: undefined, socketId: indefined, clientSocket: undefined};
+    var socket = { rooms: [], serverSocket: undefined, socketId: undefined, clientSocket: undefined};
     
     socket.init = function() {
       socket.serverSocket = io.connect('https://static-chat-ashketchumza.c9users.io/');

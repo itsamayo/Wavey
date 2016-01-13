@@ -194,6 +194,14 @@ app.factory('Socket', function (socketFactory, _) {
         socket.socketId = this.id;
       });
       
+      socket.clientSocket.on("Message", function (data) {
+  			var room = _.find(socket.rooms, function(r) { return r.id == data.room; });
+  			if (!_.isUndefined(room)) {
+  				room.messages.push(data);
+  				//room.unreadMessages = true;
+  			}
+  		});
+      
       socket.clientSocket.on('Rooms', function(rooms) {
         socket.rooms = [];
         _.each(rooms, function(r) {

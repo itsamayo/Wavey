@@ -10,6 +10,10 @@ angular.module('App.filters', []).filter('dayFilter', [function(){
 
 var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'btford.socket-io', 'App.filters']);
 
+app.constant('_',
+    window._
+);
+
 app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
 	/*$httpProvider.interceptors.push(function($rootScope) {
 		return {
@@ -172,12 +176,40 @@ app.run(function ($ionicPlatform, $ionicPopup) {
 	});
 });
 
-app.factory('Socket', function (socketFactory) {
-    var myIoSocket = io.connect('https://static-chat-ashketchumza.c9users.io/');
+app.factory('Socket', function (socketFactory, _) {
+    var socket = { rooms: [], serverSocket: undefined, socketId: indefined, clientSocket: undefined};
+    
+    socket.init = function() {
+      socket.serverSocket = io.connect('https://static-chat-ashketchumza.c9users.io/');
+      socket.clientSocket = socketFactory({ ioSocket: socket.serverSocket });
+      socket.clientSocket.on('connect', function() {
+        socket.socketId = this.id;
+      });
+      
+      socket.clientSocket.on('Rooms', function(rooms) {
+        socket.rooms = [];
+        _.each(rooms, function(r) {
+          var room = new Room({name: r, clientSocket: socket.clientSocket});
+          socket.rooms.push(room);
+        });
+      });
+    };
+    
+    socket.openRoom = function(name) {
+      var room = _.find(socket.rooms, function(r) { return r.name == name; });
+      if (!_.isUndefined(room)) {
+        socket.clientSocket.emit('Join', room.name);
+        return room;
+      }
+    };
+    
+    socket.userLoggedIn = function(user) {
+      socket.clientSocket.emit('Connect', user.username);
+    };
+    
+    socket.userLoggedOut = function(user) {
+      socket.clientSocket.emit('Leave', user.username);
+    };
 
-    mySocket = socketFactory({
-        ioSocket: myIoSocket
-    });
-
-    return mySocket;
+    return socket;
 });

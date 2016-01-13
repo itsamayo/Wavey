@@ -186,14 +186,14 @@ app.run(function ($ionicPlatform, $ionicPopup) {
 
 app.factory('Socket', function (socketFactory, _) {
     var socket = { rooms: [], serverSocket: undefined, socketId: undefined, clientSocket: undefined};
-    
+
     socket.init = function() {
       socket.serverSocket = io.connect('https://static-chat-ashketchumza.c9users.io/');
       socket.clientSocket = socketFactory({ ioSocket: socket.serverSocket });
       socket.clientSocket.on('connect', function() {
         socket.socketId = this.id;
       });
-      
+
       socket.clientSocket.on("Message", function (data) {
   			var room = _.find(socket.rooms, function(r) { return r.name == data.room; });
   			if (!_.isUndefined(room)) {
@@ -201,7 +201,7 @@ app.factory('Socket', function (socketFactory, _) {
   				//room.unreadMessages = true;
   			}
   		});
-      
+
       socket.clientSocket.on('Rooms', function(rooms) {
         console.log('rooms', rooms);
         socket.rooms = [];
@@ -211,21 +211,23 @@ app.factory('Socket', function (socketFactory, _) {
         });
       });
     };
-    
+
     socket.openRoom = function(name) {
-      console.log(socket.room)
+      console.log(socket.rooms);
       var room = _.find(socket.rooms, function(r) { return r.name == name; });
       if (!_.isUndefined(room)) {
         socket.clientSocket.emit('Join', room.name);
         return room;
       }
     };
-    
+
     socket.userLoggedIn = function(user) {
+      console.log('login->username', user.username);
       socket.clientSocket.emit('Connect', user.username);
     };
-    
+
     socket.userLoggedOut = function(user) {
+      console.log('logout->username', user.username);
       socket.clientSocket.emit('Leave', user.username);
     };
 

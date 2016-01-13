@@ -552,7 +552,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
     var COLORS = ['#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#009688'];
     $scope.room = Socket.openRoom($stateParams.room);
-    console.log($stateParams.room);
+    console.log($scope.room);
     // Socket.on("connect", function(){
     //     $scope.socketId = this.id;
     //     var data = {
@@ -567,7 +567,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     //     Socket.emit("Message", data);
 
     // });
-    
+
     $scope.$watchCollection('room.messages', function(newValue, oldValue) {
   		// _.each($scope.room.messages, function(data) {
   		// 	data.isRead = true;

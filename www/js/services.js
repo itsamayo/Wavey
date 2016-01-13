@@ -46,7 +46,7 @@ app.service('LoadingService', function($ionicLoading) {
 	return service;
 });
 
-app.service('LoginService', function ($q, $http, $rootScope, $localStorage, DebugService) {
+app.service('LoginService', function ($q, $http, $rootScope, $localStorage, DebugService, Socket) {
 	var service = {
 	    user: { id: -1, username: '', email: '', favourites: [], isLoggedIn: false, rememberMe: false, profilepic: '' }
 	};
@@ -70,6 +70,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 				deferred.resolve(data);
 				service.toggleLogin(true);
 				$localStorage.email = service.user.email;
+        Socket.userLoggedIn(service.user);
 			}
 			else {
 				deferred.reject(data.message);
@@ -98,6 +99,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 			service.user.id = -1;
 			service.user.email = '';
 			service.user.favourites = [];
+      Socket.userLoggedOut(service.user);
 		}
 		service.user.isLoggedIn = isLoggedIn;
 		$rootScope.$broadcast('user:login', service.user);

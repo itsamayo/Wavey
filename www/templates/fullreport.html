@@ -7,7 +7,7 @@
     </ion-header-bar>
     <ion-content id="settings_bg" class="screen-calm">
       <div class="exclaim">
-          <i class="icon ion-stats-bars placeholder-icon custom-icon-reg"></i><br />
+          <i class="icon ion-help-buoy placeholder-icon custom-icon-reg"></i><br /><br />
           5 day forecast<br />
           Swipe <i class="icon ion-arrow-left-c placeholder-icon custom-icon"></i>
           <i class="icon ion-arrow-right-c placeholder-icon custom-icon"></i> to view each day
@@ -21,43 +21,43 @@
         <tr>
           <td></td>
           <td>{{day.date | dayFilter}}</td>
-          <td>{{day.date | dayFilter}}</td> 
           <td>{{day.date | dayFilter}}</td>
           <td>{{day.date | dayFilter}}</td>
-          <td>{{day.date | dayFilter}}</td> 
+          <td>{{day.date | dayFilter}}</td>
+          <td>{{day.date | dayFilter}}</td>
         </tr>
         <tr>
           <td></td>
-          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.time | hourFilter}}</td> 
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.time | hourFilter}}</td>
         </tr>
         <tr>
           <td><img src="img/ovary-clipart-blue-wave-hi.png" width="30" /></td>
-          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellDir16Point}}</td> 
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellDir16Point}}</td>
         </tr>
         <tr>
           <td></td>
-          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellHeight_m}}</td> 
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellHeight_m}}</td>
         </tr>
         <tr>
           <td></td>
-          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellPeriod_secs}}s</td> 
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellPeriod_secs}}s</td>
         </tr>
         <tr>
           <td></td>
-          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.tempC}}&degC</td> 
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.tempC}}&degC</td>
         </tr>
         <tr>
           <td><img src="img/wind-icon.png" width="30"/></td>
-          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.winddir16Point}}</td> 
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.winddir16Point}}</td>
         </tr>
          <tr>
           <td></td>
-          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.windspeedKmph}}km</td> 
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.windspeedKmph}}km</td>
         </tr>
       </table>
 
       <!-- <div ng-repeat="time in day.hourly | limit:2:5"> -->
-    
+
    </div>
  </div>
    </ion-slide>

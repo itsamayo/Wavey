@@ -195,7 +195,7 @@ app.factory('Socket', function (socketFactory, _) {
       });
       
       socket.clientSocket.on("Message", function (data) {
-  			var room = _.find(socket.rooms, function(r) { return r.id == data.room; });
+  			var room = _.find(socket.rooms, function(r) { return r.name == data.room; });
   			if (!_.isUndefined(room)) {
   				room.messages.push(data);
   				//room.unreadMessages = true;

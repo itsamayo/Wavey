@@ -1,7 +1,7 @@
 function Room(info) {
   this.name = info.name;
   this.clientSocket = info.clientSocket;
-  
+  this.messages = [];
   //this.clientSocket.on('message', function(data){
   //  
   //});

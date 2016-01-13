@@ -8,6 +8,6 @@ function Room(info) {
 }
 
 Room.prototype.sendMessage = function(msgDetails) {
-  var data = { sender: msgDetails.username, message: msgDetails.message, isLog: false, color: msgDetails.color, timestamp: moment().calendar() };
+  var data = { sender: msgDetails.username, message: msgDetails.message, isLog: false, color: msgDetails.color, timestamp: moment().calendar(), socketId: msgDetails.socketId };
   this.clientSocket.emit('Message', data);
 };

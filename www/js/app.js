@@ -57,7 +57,15 @@ app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
     })
 
     .state('app.inchat', {
-        url: '/inchat/:username',
+        url: '/inchat/:username?room',
+        resolve: {
+          username: function($stateParams) {
+            return $stateParams.username;
+          },
+          room: function($stateParams) {
+            return $stateParams.room;
+          }
+        },
         views: {
             'menuContent': {
                 templateUrl: 'templates/inchat.html',

@@ -552,6 +552,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
     var COLORS = ['#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#009688'];
     $scope.room = Socket.openRoom($stateParams.room);
+    console.log($stateParams.room);
     // Socket.on("connect", function(){
     //     $scope.socketId = this.id;
     //     var data = {
@@ -616,7 +617,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
         var timeDiff = (new Date()).getTime() - lastTypingTime;
 
         if(timeDiff >= TYPING_TIMER_LENGTH && typing){
-          Socket.emit('stop typing', {socketId: Socket.socketId, sender: $scope.nickname});
+          Socket.clientSocket.emit('stop typing', {socketId: Socket.socketId, sender: $scope.nickname});
           typing = false;
         }
       }, TYPING_TIMER_LENGTH)

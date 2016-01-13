@@ -203,6 +203,7 @@ app.factory('Socket', function (socketFactory, _) {
   		});
       
       socket.clientSocket.on('Rooms', function(rooms) {
+        console.log('rooms', rooms);
         socket.rooms = [];
         _.each(rooms, function(r) {
           var room = new Room({name: r, clientSocket: socket.clientSocket});
@@ -212,6 +213,7 @@ app.factory('Socket', function (socketFactory, _) {
     };
     
     socket.openRoom = function(name) {
+      console.log(socket.room)
       var room = _.find(socket.rooms, function(r) { return r.name == name; });
       if (!_.isUndefined(room)) {
         socket.clientSocket.emit('Join', room.name);

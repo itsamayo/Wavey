@@ -572,7 +572,11 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
   		// 	data.isRead = true;
   		// });
   		// $scope.room.unreadMessages = false;
-  		for(var i = oldValue.length; i < newValue.length; i++) {
+  		var start = 0;
+  		var end = 0;
+  		if (_.isArray(oldValue)) start = oldValue.length;
+  		if (_.isArray(newValue)) end = newValue.length;
+  		for(var i = start; i < end; i++) {
   		  $scope.room.messages[i].message = fillWithEmoticons($scope.room.messages[i].message);
   		  $scope.room.messages[i].message = $sce.trustAsHtml($scope.room.messages[i].message);
   		  if (_.isUndefined($scope.room.messages[i].color)) {
@@ -603,7 +607,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     $scope.updateTyping = function(){
       if(!typing){
         typing = true;
-        Socket.emit("typing", {socketId: $scope.socketId, sender: $scope.nickname});
+        Socket.clientSocket.emit("typing", {socketId: Socket.socketId, sender: $scope.nickname});
       }
 
       lastTypingTime = (new Date()).getTime();
@@ -612,17 +616,17 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
         var timeDiff = (new Date()).getTime() - lastTypingTime;
 
         if(timeDiff >= TYPING_TIMER_LENGTH && typing){
-          Socket.emit('stop typing', {socketId: $scope.socketId, sender: $scope.nickname});
+          Socket.emit('stop typing', {socketId: Socket.socketId, sender: $scope.nickname});
           typing = false;
         }
       }, TYPING_TIMER_LENGTH)
     }
 
-    Socket.on('stop typing', function(data){
+    Socket.clientSocket.on('stop typing', function(data){
       $scope.status_message = "Welcome to";
     })
 
-    Socket.on('typing', function(data){
+    Socket.clientSocket.on('typing', function(data){
       $scope.status_message = data.sender + " is typing...";
     })
 
@@ -649,15 +653,21 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     $scope.sendMessage = function(){
       if($scope.message.length == 0)
         return;
-      var newMessage = {sender:'', message:'', socketId:'', isLog:false, color:'' };
-      newMessage.sender = $scope.nickname;
-      newMessage.message = $scope.message;
-      newMessage.socketId = $scope.socketId;
-      newMessage.isLog = false;
-      newMessage.displayPicture = $scope.displayPicture;
-      newMessage.color = $scope.getUsernameColor($scope.nickname);
+      $scope.room.sendMessage({
+        username: $scope.nickname,
+        color: $scope.getUsernameColor($scope.nickname),
+        message: $scope.message,
+        socketId: Socket.socketId
+      });
+      // var newMessage = {sender:'', message:'', socketId:'', isLog:false, color:'' };
+      // newMessage.sender = $scope.nickname;
+      // newMessage.message = $scope.message;
+      // newMessage.socketId = $scope.socketId;
+      // newMessage.isLog = false;
+      // newMessage.displayPicture = $scope.displayPicture;
+      // newMessage.color = $scope.getUsernameColor($scope.nickname);
 
-      Socket.emit("Message", newMessage);
+      // Socket.emit("Message", newMessage);
 
       $scope.message='';
     }

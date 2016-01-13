@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
-.controller('AppCtrl', function ($scope, $state, $ionicPlatform, $ionicPopup, $ionicModal, LoginService, SpotsService, LoadingService, $localStorage, $rootScope, $http) {
+.controller('AppCtrl', function ($scope, $state, $ionicPlatform, $ionicPopup, $ionicModal, LoginService, SpotsService, LoadingService, $localStorage, $rootScope, $http, Socket) {
     // Form data for the login modal
     $rootScope.isInChat = false;
 
@@ -41,7 +41,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
         //console.log(toState);
         //console.log(fromState);
     });
-
+    Socket.init();
     $scope.service = LoginService;
 
     LoadingService.subscribe($scope, 'spots:regions');
@@ -83,11 +83,11 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
         $scope.service.toggleLogin(false);
     };
 
-    $scope.gochat = function (name) {
+    $scope.gochat = function (name, region) {
         //var username = $scope.service.user.username;
         //console.log('gochat, username: ', name);
         //console.log('gochat, profilePic: ', pic);
-        $state.go('app.inchat', { 'username': name });
+        $state.go('app.inchat', { 'username': name, 'room': region });
     };
 
     // Full report COMING SOON
@@ -542,43 +542,60 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
 })
 
-.controller('ChatCtrl', function($scope, $timeout, $stateParams, Socket, $ionicScrollDelegate, $sce, $cordovaMedia){
-
-    $scope.messages = [];
+.controller('ChatCtrl', function($scope, $timeout, $stateParams, Socket, $ionicScrollDelegate, $sce, $cordovaMedia, _){
+    //replaced with $scope.room.messages
+    //$scope.messages = [];
+    //do we really need these here?
     $scope.region = ['ECT', 'KZN', 'WCT']
     $scope.nickname = $stateParams.username;
     $scope.status_message = "Welcome " + $stateParams.username;
 
     var COLORS = ['#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#009688'];
+    $scope.room = Socket.openRoom($stateParams.room);
+    // Socket.on("connect", function(){
+    //     $scope.socketId = this.id;
+    //     var data = {
+    //                   message: $scope.nickname + " has joined the conversation",
+    //                   sender: $scope.nickname,
+    //                   socketId: $scope.socketId,
+    //                   isLog: true,
+    //                   color : $scope.getUsernameColor($scope.nickname)
+    //                 };
 
-    Socket.on("connect", function(){
-        $scope.socketId = this.id;
-        var data = {
-                      message: $scope.nickname + " has joined the conversation",
-                      sender: $scope.nickname,
-                      socketId: $scope.socketId,
-                      isLog: true,
-                      color : $scope.getUsernameColor($scope.nickname)
-                    };
 
+    //     Socket.emit("Message", data);
 
-        Socket.emit("Message", data);
-
+    // });
+    
+    $scope.$watchCollection('room.messages', function(newValue, oldValue) {
+  		// _.each($scope.room.messages, function(data) {
+  		// 	data.isRead = true;
+  		// });
+  		// $scope.room.unreadMessages = false;
+  		for(var i = oldValue.length; i < newValue.length; i++) {
+  		  $scope.room.messages[i].message = fillWithEmoticons($scope.room.messages[i].message);
+  		  $scope.room.messages[i].message = $sce.trustAsHtml($scope.room.messages[i].message);
+  		  if (_.isUndefined($scope.room.messages[i].color)) {
+  		    $scope.room.messages[i].color = $scope.getUsernameColor($scope.room.messages[i].sender);
+  		  }
+  		}
+  		console.log('message received');
+  	  $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
     });
 
-    Socket.on("Message", function(data){
+    // Socket.on("Message", function(data){
 
-      data.message = fillWithEmoticons(data.message);
-      data.message = $sce.trustAsHtml(data.message);
-      $scope.messages.push(data);
+    //   data.message = fillWithEmoticons(data.message);
+    //   data.message = $sce.trustAsHtml(data.message);
+    //   $scope.messages.push(data);
 
-      // if($scope.socketId == data.socketId)
-      //   playAudio("audio/outgoing.mp3");
-      // else
-      //   playAudio("audio/incoming.mp3");
+    //   // if($scope.socketId == data.socketId)
+    //   //   playAudio("audio/outgoing.mp3");
+    //   // else
+    //   //   playAudio("audio/incoming.mp3");
 
-      $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
-    })
+    //   $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
+    // })
 
     var typing = false;
     var TYPING_TIMER_LENGTH = 2000;

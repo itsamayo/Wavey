@@ -5,7 +5,7 @@
             <button class="button button-clear" ng-click="closeFullReport()"><i class="icon ion-close-round placeholder-icon custom-icon-close"></i></button>
         </div>
     </ion-header-bar>
-    <ion-content id="settings_bg" class="screen-calm">
+    <ion-content id="report_bg" class="screen-calm">
       <div class="exclaim">
           <i class="icon ion-help-buoy placeholder-icon custom-icon-reg"></i><br /><br />
           5 day forecast<br />
@@ -29,16 +29,16 @@
         <tr>
           <td></td>
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.time | hourFilter}}</td>
-        </tr>
-        <tr>
+        </tr style="color: #009ec2;">
+        <tr style="color: #009ec2;">
           <td><img src="img/ovary-clipart-blue-wave-hi.png" width="30" /></td>
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellDir16Point}}</td>
         </tr>
-        <tr>
+        <tr style="color: #009ec2;">
           <td></td>
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellHeight_m}}m</td>
         </tr>
-        <tr>
+        <tr style="color: #009ec2;">
           <td></td>
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellPeriod_secs}}s</td>
         </tr>
@@ -47,7 +47,7 @@
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.waterTemp_C}}&degC</td>
         </tr> -->
         <tr>
-          <td><img src="img/wind-icon2.png" width="30"/></td>
+          <td><img src="img/wind-icon.png" width="30"/></td>
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.winddir16Point}}</td>
         </tr>
          <tr>

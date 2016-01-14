@@ -66,7 +66,7 @@ img.logo {
 }
 
 .custom-icon-for {
-  color : #393939;
+  color : #009ec2;
 }
 
 .custom-icon-rep {
@@ -126,7 +126,7 @@ img.logo {
 }
 
 .custom-icon-rego {
-  color : #886aea;
+  color : #009ec2;
   font-size: 50px;
 }
 
@@ -270,13 +270,13 @@ h1.title {
 .sky {
     font-size: 18px;
     font-weight: 400;
-    color: #393939;
+    color: #fff;
 }
 
 .sky span {
     font-size: 14px;
     font-weight: 400;
-    color: #393939;
+    color: #fff;
 }
 
 .ocean {
@@ -663,6 +663,12 @@ a.autolinker {
 
 #fav_bg {
   background-image: url('../img/wave.jpg');
+  background-size: cover;
+  background-position: 70% 0;
+}
+
+#report_bg {
+  background-image: url('../img/wave2.jpg');
   background-size: cover;
   background-position: 70% 0;
 }

@@ -14,6 +14,11 @@ color: #009ec2;
   color: #fff !important;
 }
 
+.timeStamp {
+  font-size: 10px !important;
+  text-align: right !important;
+}
+
 .slider-pager {
     top: 0px;
     font-size: 10px;

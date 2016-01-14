@@ -552,6 +552,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
     var COLORS = ['#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#009688'];
     $scope.room = Socket.openRoom($stateParams.room);
+    $scope.socketId = Socket.socketId;
     console.log($scope.room);
     // Socket.on("connect", function(){
     //     $scope.socketId = this.id;

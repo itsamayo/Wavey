@@ -195,6 +195,7 @@ app.factory('Socket', function (socketFactory, _) {
       });
 
       socket.clientSocket.on("Message", function (data) {
+        console.log('incoming message data', data);
   			var room = _.find(socket.rooms, function(r) { return r.name == data.room; });
   			if (!_.isUndefined(room)) {
   				room.messages.push(data);
@@ -222,8 +223,8 @@ app.factory('Socket', function (socketFactory, _) {
     };
 
     socket.userLoggedIn = function(user) {
-      console.log('login->username', user.username);
-      socket.clientSocket.emit('Connect', user.username);
+      console.log('login->username', {username: user.username} );
+      socket.clientSocket.emit('Connect', {username: user.username} );
     };
 
     socket.userLoggedOut = function(user) {

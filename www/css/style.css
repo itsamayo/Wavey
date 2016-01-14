@@ -87,7 +87,7 @@ img.logo {
 
 .custom-icon-reg {
   color : #009ec2;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .custom-icon-regmenu {
@@ -131,12 +131,12 @@ img.logo {
 
 .custom-icon-rego {
   color : #009ec2;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .custom-icon-fav {
   color : #db0000;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .custom-icon-favmenu {
@@ -690,9 +690,9 @@ a.autolinker {
 }
 
 #menu_bg {
-	background-image: url('../img/wave.jpg');
+	background-image: url('../img/wave2.jpg');
 	background-size: cover;
-	background-position: 50% 0;
+	background-position: 10% 0;
 }
 
 #boardroom_bg {

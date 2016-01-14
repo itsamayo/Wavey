@@ -188,7 +188,7 @@ app.factory('Socket', function (socketFactory, _) {
     var socket = { rooms: [], serverSocket: undefined, socketId: undefined, clientSocket: undefined};
 
     socket.init = function() {
-      socket.serverSocket = io.connect('https://static-chat-ashketchumza.c9users.io/');
+      socket.serverSocket = io.connect('https://wavey-ashketchumza.c9users.io/');
       socket.clientSocket = socketFactory({ ioSocket: socket.serverSocket });
       socket.clientSocket.on('connect', function() {
         socket.socketId = this.id;

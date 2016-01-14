@@ -1,6 +1,6 @@
 <ion-view view-title="{{status_message}}">
 
-    <ion-content id="boardroom_bg" has-bouncing="true" class="has-header has-footer screen-calm" delegate-handle="mainScroll">
+    <ion-content id="chat_bg" has-bouncing="true" class="has-header has-footer screen-calm" delegate-handle="mainScroll">
         <ion-list class="list">
             <li style="background-color: transparent !important; border: none !important; padding-top: 4px !important; padding-bottom: 4px !important;"
                 ng-repeat="msg in room.messages" ng-class="{
@@ -14,13 +14,13 @@
                     <h2 ng-hide="msg.isLog"><b>{{msg.sender}}:</b></h2>
                     <p ng-hide="msg.isLog" ng-bind-html="msg.message"></p>               
                     <p class="timeStamp" ng-hide="msg.islog">{{msg.timestamp}}</p>
-                    <center><p style="color:#393939;" ng-show="msg.isLog">{{msg.message}}</p></center>
+                    <center><p style="color:#fff;" ng-show="msg.isLog">{{msg.message}}</p></center>
                 </div>
             </li>
         </ion-list>
     </ion-content>
 
-    <div class="bar bar-footer item-input-inset footer-item-input-inset bar-footer">
+    <div class="bar bar-footer item-input-inset footer-item-input-inset bar-footer-chat">
 	   <label class="item-input-wrapper">
 		   <i class="icon ion-android-chat placeholder-icon"></i>
            <input style="color:#393939;" type="text" placeholder="Enter your message..." ng-model="message" ng-change="updateTyping()" ng-enter="sendMessage()" />

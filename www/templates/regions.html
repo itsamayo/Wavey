@@ -1,7 +1,12 @@
 <ion-view view-title="WAVEY">
-  <ion-content id="main_bg" class="screen-calm">
+  <ion-content id="main_bg" class="screen-calm">     
+          <div class="row">
+              <div class="col"></div>
+            <div class="col"><br /><br /><br /><img src="img/logo.png" width="100"/></div>
+              <div class="col"></div>
+          </div>
       <div class="exclaim">
-          <i class="icon ion-earth placeholder-icon custom-icon-reg"></i><br /><br />Choose your area. Find your spot.<br /> View the report
+          Choose your area. Find your spot.<br /> View the report
       </div><br />
     <ion-list>
         <ion-item ng-repeat=" region in regions" href="#/app/regions/{{region.id}}">
@@ -20,14 +25,7 @@
               <i class="icon ion-person-add placeholder-icon custom-icon"></i>Sign up
           </ion-item>
       </ion-list>
-      </div>
-      <div ng-show="isLoggedIn">
-          <div class="row">
-              <div class="col"></div>
-            <div class="col"><br /><br /><br /><img src="img/logo.png" width="100"/></div>
-              <div class="col"></div>
-          </div>
-      </div>
+      </div>      
       <br />
       <br />
       <br />

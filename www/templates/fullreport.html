@@ -14,10 +14,10 @@
       </div><br />
   <ion-slide-box on-slide-changed="slideHasChanged($index)">
     <ion-slide ng-repeat="day in marineWeather.data.weather | limitTo:5:0">
-    <div class="card">
+    <div class="card" style="background-color: transparent !important;">
     <div class="item item-body">
 
-      <table style="width:100%; min-height: 400px;">
+      <table style="width:100%; min-height: 400px; color: #fff">
         <tr>
           <td></td>
           <td>{{day.date | dayFilter}}</td>
@@ -47,7 +47,7 @@
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.waterTemp_C}}&degC</td>
         </tr> -->
         <tr>
-          <td><img src="img/wind-icon.png" width="30"/></td>
+          <td><img src="img/wind-icon2.png" width="30"/></td>
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.winddir16Point}}</td>
         </tr>
          <tr>

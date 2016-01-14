@@ -546,9 +546,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     //replaced with $scope.room.messages
     //$scope.messages = [];
     //do we really need these here?
-    $scope.region = ['ECT', 'KZN', 'WCT']
     $scope.nickname = $stateParams.username;
-    $scope.status_message = "Welcome " + $stateParams.username;
+    $scope.status_message = "Welcome " + $stateParams.username + "!";
 
     var COLORS = ['#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#009688'];
     $scope.room = Socket.openRoom($stateParams.room);

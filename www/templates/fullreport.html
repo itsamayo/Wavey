@@ -17,7 +17,7 @@
     <div class="card">
     <div class="item item-body">
 
-      <table style="width:100%; min-height: 300px;">
+      <table style="width:100%; min-height: 400px;">
         <tr>
           <td></td>
           <td>{{day.date | dayFilter}}</td>
@@ -36,16 +36,16 @@
         </tr>
         <tr>
           <td></td>
-          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellHeight_m}}</td>
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellHeight_m}}m</td>
         </tr>
         <tr>
           <td></td>
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.swellPeriod_secs}}s</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td></td>
-          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.tempC}}&degC</td>
-        </tr>
+          <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.waterTemp_C}}&degC</td>
+        </tr> -->
         <tr>
           <td><img src="img/wind-icon.png" width="30"/></td>
           <td ng-repeat="hour in day.hourly | limitTo:5:2">{{hour.winddir16Point}}</td>

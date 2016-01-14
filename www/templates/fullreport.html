@@ -6,7 +6,7 @@
         </div>
     </ion-header-bar>
     <ion-content id="report_bg" class="screen-calm">
-      <div class="exclaim">
+      <div class="exclaim notify">
           <i class="icon ion-help-buoy placeholder-icon custom-icon-reg"></i><br /><br />
           5 day forecast<br />
           Swipe <i class="icon ion-arrow-left-c placeholder-icon custom-icon"></i>
@@ -17,7 +17,7 @@
     <div class="card" style="background-color: transparent !important;">
     <div class="item item-body">
 
-      <table style="width:100%; min-height: 400px; color: #fff">
+      <table class="fullReport" style="width:100%; color: #fff">
         <tr>
           <td></td>
           <td>{{day.date | dayFilter}}</td>

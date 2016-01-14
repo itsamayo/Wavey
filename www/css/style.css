@@ -313,7 +313,8 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
   padding-top: 2px;
   padding-left: 0;
   height: 34px;
-  color: #393939;
+  color: #fff;
+  background-color: rgba(57, 57, 57, 0.5);
   vertical-align: middle;
   font-size: 14px;
   line-height: 16px;

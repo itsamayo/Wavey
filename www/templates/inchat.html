@@ -11,7 +11,7 @@
                 <div ng-class="{
                   'bubbleRight item-text-wrap': (socketId == msg.socketId) && !msg.isLog ,
 			            'bubbleLeft item-text-wrap': (socketId != msg.socketId) && !msg.isLog}">   
-                    <h2 ng-hide="msg.isLog"><b>{{msg.sender}}:</b></h2>
+                    <h2 ng-hide="msg.isLog"><b>{{msg.sender}}</b></h2>
                     <p ng-hide="msg.isLog" ng-bind-html="msg.message"></p>               
                     <p class="timeStamp" ng-hide="msg.islog">{{msg.timestamp}}</p>
                     <center><p style="color:#fff;" ng-show="msg.isLog">{{msg.message}}</p></center>

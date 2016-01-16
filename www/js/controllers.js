@@ -228,7 +228,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     $scope.spot = spot;
 	$scope.spot.webcamAvailable = true;//($scope.spot.webcamURL != '');
 	if ($scope.spot.webcamURL == '') {
-		$scope.spot.webcamURL = 'http://www.wavescape.co.za/plugins/content/webcam/newfetch.php?pic=bigbay.jpg&rnd=1072332567';
+		$scope.spot.webcamURL = 'http://www.wavey.co.za/img/nocam.png';
 	}
 
     $scope.isFavourited = LoginService.isFavourited($scope.spot.id);

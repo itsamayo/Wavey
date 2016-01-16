@@ -175,29 +175,53 @@ app.run(function ($ionicPlatform, $ionicPopup) {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
 
-    // kick off the platform web client
-    Ionic.io();
+    // DEV PUSH - FOR USE IN SERVE - RUN ionic config set dev_push true
+    // Ionic.io();
 
-    // this will give you a fresh user or the previously saved 'current user'
-    var user = Ionic.User.current();
+    // var user = Ionic.User.current();
 
-    // if the user doesn't have an id, you'll need to give it one.
-    if (!user.id) {
-     user.id = Ionic.User.anonymousId();
-    // user.id = 'your-custom-user-id';
-    }
+    // if (!user.id) {
+    //  user.id = Ionic.User.anonymousId();
+    // }
 
-    //persist the user
-    user.save();
+    // user.save();
 
+    // var push = new Ionic.Push({
+    //   "debug": true
+    // });
+
+    // push.register(function(token) {
+    //   console.log("Device token:",token.token);
+    // });
+
+    // NATIVE PUSH - FOR USE ON DEVICE - RUN ionic config set dev_push false    
+    var io = Ionic.io();
     var push = new Ionic.Push({
-      "debug": true
+      "onNotification": function(notification) {
+        alert('Received push notification!');
+      },
+      "pluginConfig": {
+        "android": {
+          "iconColor": "#0000FF"
+        }
+      }
     });
-
-    push.register(function(token) {
-      console.log("Device token:",token.token);
-    });
-
+    var user = Ionic.User.current();
+    
+    if (!user.id) {
+      user.id = Ionic.User.anonymousId();
+    }
+    
+    // Just adding some dummy data so I know this is the device test..
+    user.set('name', 'ashketchum');
+    user.set('bio', 'something has to give');
+    user.save();
+   
+    var callback = function(data) {
+      push.addTokenToUser(user);
+      user.save();
+    };
+    push.register(callback);
 
 		if (window.cordova && window.cordova.plugins.Keyboard) {
 		  cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);

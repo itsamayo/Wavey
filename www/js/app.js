@@ -174,7 +174,7 @@ app.run(function ($ionicPlatform, $ionicPopup) {
     $ionicPlatform.ready(function () {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
-    
+
     // kick off the platform web client
     Ionic.io();
 
@@ -189,6 +189,14 @@ app.run(function ($ionicPlatform, $ionicPopup) {
 
     //persist the user
     user.save();
+
+    var push = new Ionic.Push({
+      "debug": true
+    });
+
+    push.register(function(token) {
+      console.log("Device token:",token.token);
+    });
 
 
 		if (window.cordova && window.cordova.plugins.Keyboard) {

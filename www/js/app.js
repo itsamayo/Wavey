@@ -8,7 +8,7 @@ angular.module('App.filters', []).filter('dayFilter', [function(){
   }
 }]);
 
-var app = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'btford.socket-io', 'App.filters']);
+var app = angular.module('starter', ['ionic','ionic.service.core', 'ngCordova', 'starter.controllers', 'btford.socket-io', 'App.filters']);
 
 app.constant('_',
     window._
@@ -174,6 +174,23 @@ app.run(function ($ionicPlatform, $ionicPopup) {
     $ionicPlatform.ready(function () {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
+    
+    // kick off the platform web client
+    Ionic.io();
+
+    // this will give you a fresh user or the previously saved 'current user'
+    var user = Ionic.User.current();
+
+    // if the user doesn't have an id, you'll need to give it one.
+    if (!user.id) {
+     user.id = Ionic.User.anonymousId();
+    // user.id = 'your-custom-user-id';
+    }
+
+    //persist the user
+    user.save();
+
+
 		if (window.cordova && window.cordova.plugins.Keyboard) {
 		  cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 		}

@@ -14,7 +14,8 @@ var debug = false;
 })();
 
 function getURL(path) {
-    return (debug ? "app/" : "http://wavey.co.za/app/") + path;
+    //return (debug ? "app/" : "http://wavey.co.za/app/") + path;
+    return 'http://37.139.16.48:8080/' + path;
 }
 
 app.service('DebugService', function () {
@@ -46,9 +47,9 @@ app.service('LoadingService', function($ionicLoading) {
 	return service;
 });
 
-app.service('LoginService', function ($q, $http, $rootScope, $localStorage, DebugService, Socket) {
+app.service('LoginService', function ($q, $http, $rootScope, $localStorage, DebugService, Socket, _) {
 	var service = {
-	    user: { id: -1, username: '', email: '', favourites: [], isLoggedIn: false, rememberMe: false, profilepic: '' }
+	    user: { id: undefined, username: '', email: '', favourites: [], isLoggedIn: false, rememberMe: false, profilepic: '' }
 	};
 
 	service.loginUser = function (_email, _password) {
@@ -61,6 +62,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				data: $.param({email:_email, password:_password})
 		}).success(function (data, status, headers, config) {
+        console.log('LoginService->login->success: ', data);
 		    if (!data.error) {
 				service.user.id = data.id;
 				service.user.email = data.email;
@@ -96,7 +98,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 
 	service.toggleLogin = function(isLoggedIn) {
 		if (!isLoggedIn) {
-			service.user.id = -1;
+			service.user.id = undefined;
 			service.user.email = '';
 			service.user.favourites = [];
       Socket.userLoggedOut(service.user);
@@ -111,7 +113,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 	    var promise = deferred.promise;
 	    service.user.qq = _email;
 	    //var _data = { email: service.user.email, newEmail: _email };
-	    var _data = { userId: service.user.id, newEmail: _email };
+	    var _data = { id: service.user.id, oldEmail: service.user.email, newEmail: _email };
 
 	    $http({
 	        url: getURL("updateEmail"),
@@ -158,7 +160,7 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
         //comparison of the current password to the supplied password are done on the server
 	    if (_newPassword == _confirmNewPassword) {
 	        //var _data = { email: service.user.email, oldPassword: _password, newPassword: _newPassword };
-	        var _data = { userId: service.user.id, oldPassword: _password, newPassword: _newPassword };
+	        var _data = { id: service.user.id, oldPassword: _password, newPassword: _newPassword };
 	        //console.log(_data);
 	        service.user.qq = _newPassword;
 	        $http({
@@ -246,14 +248,15 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 		return promise;
 	};
 
-	service.toggleFavourite = function (_spotId) {
+	service.toggleFavourite = function (regionId, spot) {
 	    var deferred = $q.defer();
 	    var promise = deferred.promise;
 	    $http({
 	        url: getURL("toggleFavourite"),
 	        method: "POST",
 	        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-	        data: $.param({ userId: service.user.id, spotId: _spotId })
+          data: $.param({ id: service.user.id, regionId: regionId, spot: spot })
+	        // data: $.param({ userId: service.user.id, spotId: _spotId })
 	        //data: $.param({ email: service.user.email, spotId: _spotId })
 	    }).success(function (data, status, headers, config) {
 	        if (!data.error) {
@@ -281,12 +284,16 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 	    return promise;
 	};
 
-	service.isFavourited = function (spotId) {
-	    for (var i = 0; i < service.user.favourites.length; i++) {
-	        var fav = service.user.favourites[i];
-	        if (fav.spotId == spotId) return true;
-	    }
-	    return false;
+	service.isFavourited = function (regionId, spot) {
+    var result = _.find(service.user.favourites, function(f) {
+      return (f.region == regionId) && (f.spot == spot);
+    });
+    return result;
+	    // for (var i = 0; i < service.user.favourites.length; i++) {
+	    //     var fav = service.user.favourites[i];
+	    //     if (fav.spotId == spotId) return true;
+	    // }
+	    // return false;
 	};
 
 	service.toggleRememberMe = function (rememberMe) {
@@ -405,6 +412,7 @@ app.service('SpotsService', function ($q, $filter, $http, $rootScope) {
 	service.downloadData = function () {
 		//get all region and spot data, store it locally
 		$http.get(getURL("regions")).success(function (data) {
+      console.log('SpotsService->downloadData:', data);
 			service.regions = data.regions;
 			$rootScope.$broadcast('spots:regions', service.regions);
 		}).error(function (data, status, headers, config) {
@@ -412,35 +420,43 @@ app.service('SpotsService', function ($q, $filter, $http, $rootScope) {
 		    else data.message = data;
 		    $rootScope.$broadcast('http:error', data);
 		});
-		$http.get(getURL("spots")).success(function (data) {
-			service.spots = data.spots;
-			$rootScope.$broadcast('spots:regions', service.spots);
-		}).error(function (data, status, headers, config) {
-		    if (data == null) data = { exit: true, message: 'Unable to connect to the server. Please check your connection' };
-		    else data.message = data;
-		    $rootScope.$broadcast('http:error', data);
-		});
+		// $http.get(getURL("spots")).success(function (data) {
+		// 	service.spots = data.spots;
+		// 	$rootScope.$broadcast('spots:regions', service.spots);
+		// }).error(function (data, status, headers, config) {
+		//     if (data == null) data = { exit: true, message: 'Unable to connect to the server. Please check your connection' };
+		//     else data.message = data;
+		//     $rootScope.$broadcast('http:error', data);
+		// });
 	};
 
 	service.getRegions = function () {
 		return service.regions;
 	};
-	service.getSpot = function (spotId) {
+	service.getSpot = function (regionId, spotName) {
 		var dfd = $q.defer();
-		service.spots.forEach(function(spot) {
-			if (spot.id == spotId) dfd.resolve(spot);
-		})
+    console.log('SpotsService->getSpot, regionId:' + regionId + ' spot: ' + spotName)
+    var region = _.find(service.regions, function(f) { return f._id == regionId; });
+    var spot = _.find(region.spots, function(f) { return f.name == spotName;});
+    dfd.resolve(spot);
+		// service.spots.forEach(function(spot) {
+		// 	if (spot.id == spotId) dfd.resolve(spot);
+		// })
 		return dfd.promise
 	};
 	service.getRegion = function (regId) {
 		var dfd = $q.defer();
-		service.regions.forEach(function(region) {
-			if (region.id == regId) dfd.resolve(region);
-		})
+		// service.regions.forEach(function(region) {
+		// 	if (region.id == regId) dfd.resolve(region);
+		// })
+    var region = _.find(service.regions, function(f) { return f._id == regId; });
+    dfd.resolve(region);
 		return dfd.promise
 	};
 	service.getSpots = function (regId) {
-		return $filter('filter')(this.spots, { regionId: regId});
+		//return $filter('filter')(this.spots, { regionId: regId});
+    var region = _.find(service.regions, function(f) { return f.id == regId; });
+    return region.spots;
 	};
 
 	service.getMarineWeather = function (spot) {

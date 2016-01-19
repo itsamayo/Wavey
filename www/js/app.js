@@ -14,6 +14,8 @@ app.constant('_',
     window._
 );
 
+// app.constant('SERVER_URL', 'http://37.139.16.48:8080/');
+
 app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
 	/*$httpProvider.interceptors.push(function($rootScope) {
 		return {
@@ -76,11 +78,6 @@ app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
 
     .state('app.favourites', {
         url: "/favourites",
-        resolve: {
-            favourites: function (LoginService) {
-                return LoginService.user.favourites
-            }
-        },
         views: {
             'menuContent': {
                 templateUrl: "templates/favourites.html",
@@ -128,11 +125,12 @@ app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
 		url: "/regions/:regionId",
 		resolve: {
 			region: function($stateParams, SpotsService) {
+        console.log('app->regionId:', $stateParams.regionId);
 				return SpotsService.getRegion($stateParams.regionId)
-			},
-			spots: function($stateParams, SpotsService) {
-				return SpotsService.getSpots($stateParams.regionId)
-			}
+			}//,
+			// spots: function($stateParams, SpotsService) {
+			// 	return SpotsService.getSpots($stateParams.regionId)
+			// }
 		},
 		views: {
 			'menuContent': {
@@ -152,10 +150,15 @@ app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
      })
 
 	.state('app.spot', {
-		url: "/spots/:spotId",
+		url: "/regions/:regionId/:spot",
 		resolve: {
-			spot: function($stateParams, SpotsService) {
-				return SpotsService.getSpot($stateParams.spotId)
+      region: function($stateParams, SpotsService) {
+        console.log('app->spot->regionId', $stateParams.regionId);
+				return SpotsService.getRegion($stateParams.regionId)
+			},
+      spot: function($stateParams, SpotsService) {
+        console.log('app->spot->spot', $stateParams.spot);
+				return SpotsService.getSpot($stateParams.regionId, $stateParams.spot)
 			}
 		},
 		views: {
@@ -194,7 +197,7 @@ app.run(function ($ionicPlatform, $ionicPopup) {
     //   console.log("Device token:",token.token);
     // });
 
-    // NATIVE PUSH - FOR USE ON DEVICE - RUN ionic config set dev_push false    
+    // NATIVE PUSH - FOR USE ON DEVICE - RUN ionic config set dev_push false
     var io = Ionic.io();
     var push = new Ionic.Push({
       "onNotification": function(notification) {
@@ -207,16 +210,16 @@ app.run(function ($ionicPlatform, $ionicPopup) {
       }
     });
     var user = Ionic.User.current();
-    
+
     if (!user.id) {
       user.id = Ionic.User.anonymousId();
     }
-    
+
     // Just adding some dummy data so I know this is the device test..
     user.set('name', 'ashketchum');
     user.set('bio', 'something has to give');
     user.save();
-   
+
     var callback = function(data) {
       push.addTokenToUser(user);
       user.save();
@@ -237,7 +240,7 @@ app.factory('Socket', function (socketFactory, _) {
     var socket = { rooms: [], serverSocket: undefined, socketId: undefined, clientSocket: undefined};
 
     socket.init = function() {
-      socket.serverSocket = io.connect('http://37.139.16.48:8080/');
+      socket.serverSocket = io.connect('http://37.139.16.48:8080/');//'http://37.139.16.48:8080/');
       socket.clientSocket = socketFactory({ ioSocket: socket.serverSocket });
       socket.clientSocket.on('connect', function() {
         socket.socketId = this.id;

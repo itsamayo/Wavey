@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
-.controller('AppCtrl', function ($scope, $state, $ionicPlatform, $ionicPopup, $ionicModal, LoginService, SpotsService, LoadingService, $localStorage, $rootScope, $http, Socket) {
+.controller('AppCtrl', function ($scope, $state, $ionicPlatform, $ionicPopup, $ionicModal, LoginService, SpotsService, LoadingService, $localStorage, $rootScope, $http, Socket, _) {
     // Form data for the login modal
     $rootScope.isInChat = false;
 
@@ -30,7 +30,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
     $scope.$on('user:login', function (event, data) {
         // you could inspect the data to see if what you care about changed, or just update your own scope
-        $scope.isLoggedIn = $scope.service.user.id > 0;
+        $scope.isLoggedIn = $scope.service.user.isLoggedIn;//!_.isUndefined($scope.service.user.id);
+        console.log('user:login', $scope.isLoggedIn);
     });
 
     $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
@@ -43,7 +44,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     });
     Socket.init();
     $scope.service = LoginService;
-
+    $scope.isLoggedIn = $scope.service.user.isLoggedIn;
     LoadingService.subscribe($scope, 'spots:regions');
     LoadingService.show();
     $scope.data = { name: '', email: '', password: '', confirmPassword: '' };
@@ -53,11 +54,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     if ($localStorage.rememberMe) {
         $scope.service.loginUser($localStorage.email, $localStorage.password);
     }
-
-    $scope.$on('user:login', function (event, data) {
-        // you could inspect the data to see if what you care about changed, or just update your own scope
-        $scope.isLoggedIn = $scope.service.user.id > 0;
-    });
 
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -162,7 +158,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
 })
 
-.controller('RegionsCtrl', function ($scope, regions, SpotsService) {
+.controller('RegionsCtrl', function ($scope, LoginService, regions, SpotsService) {
     $scope.$on('spots:regions', function (event, data) {
         // you could inspect the data to see if what you care about changed, or just update your own scope
         $scope.regions = SpotsService.regions;
@@ -211,27 +207,28 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
 })
 
-.controller('RegionCtrl', function ($scope, region, spots) {
+.controller('RegionCtrl', function ($scope, region) {//, spots) {
      $scope.region = region;
-     $scope.spots = spots;
+    //  $scope.spots = $scope.region.spots;
  })
 
-.controller('SpotCtrl', function ($scope, $http, $ionicPopup, $ionicModal, spot, SpotsService, LoginService, LoadingService) {
+.controller('SpotCtrl', function ($scope, $http, $ionicPopup, $ionicModal, region, spot, SpotsService, LoginService, LoadingService) {
     LoadingService.show();
-
+    console.log('SpotCtrl->region', region);
+    console.log('SpotCtrl->spot', spot);
     $scope.$on('spot:toggleFavourite', function (event, data) {
 	    // you could inspect the data to see if what you care about changed, or just update your own scope
         $scope.isFavourited = LoginService.isFavourited($scope.spot.id);
         LoadingService.hide();
 	});
-
-    $scope.spot = spot;
+  $scope.region = region;
+  $scope.spot = spot;
 	$scope.spot.webcamAvailable = true;//($scope.spot.webcamURL != '');
 	if ($scope.spot.webcamURL == '') {
 		$scope.spot.webcamURL = 'http://www.wavey.co.za/img/nocam.png';
 	}
 
-    $scope.isFavourited = LoginService.isFavourited($scope.spot.id);
+    $scope.isFavourited = LoginService.isFavourited($scope.region._id, $scope.spot.name);
 
     $scope.sunRise = "...";
     $scope.sunset = "...";
@@ -263,7 +260,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
         }
         else {
             LoadingService.show();
-            LoginService.toggleFavourite($scope.spot.id);
+            LoginService.toggleFavourite($scope.region._id, $scope.spot.name);
 
         }
 	};
@@ -521,8 +518,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     };
 })
 
-.controller('FavouritesCtrl', function ($scope, favourites, LoginService, SpotsService, $filter) {
-    $scope.favourites = favourites;
+.controller('FavouritesCtrl', function ($scope, LoginService, SpotsService, $filter, _) {
     $scope.spots = [];
 
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
@@ -530,12 +526,12 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     });
 
      $scope.refresh = function () {
-         var tmp = [];
-         LoginService.user.favourites.forEach(function (fav) {
-             var spot = SpotsService.getSpot(fav.spotId).$$state.value;
-             tmp.push(spot);
-         });
-         $scope.spots = $filter('orderBy')(tmp, 'name');
+       $scope.spots = [];
+       _.each(LoginService.user.favourites, function(f) {
+          var region = _.find(SpotsService.regions, function(r) { return r._id == f.region; });
+          var spot = _.find(region.spots, function(s) { return s.name == f.name; });
+          $scope.spots.push({ region: region._id, name: spot.name });
+       });
      };
 
      $scope.refresh();

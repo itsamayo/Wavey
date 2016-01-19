@@ -4,7 +4,7 @@
             <i class="icon ion-android-favorite placeholder-icon custom-icon-fav"></i><br /><br />Your favourites. In one place.
         </div><br />
         <ion-list>
-            <ion-item ng-repeat="spot in spots" href="#/app/spots/{{spot.id}}">
+            <ion-item ng-repeat="spot in spots" href="#/app/regions/{{spot.region}}/{{spot.name}}">
                 {{spot.name}} <i class="icon ion-chevron-right placeholder-icon custom-icon"></i>
             </ion-item>
         </ion-list>

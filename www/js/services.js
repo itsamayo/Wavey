@@ -286,9 +286,9 @@ app.service('LoginService', function ($q, $http, $rootScope, $localStorage, Debu
 
 	service.isFavourited = function (regionId, spot) {
     var result = _.find(service.user.favourites, function(f) {
-      return (f.region == regionId) && (f.spot == spot);
+      return (f.region == regionId) && (f.name == spot);
     });
-    return result;
+    return !_.isUndefined(result);
 	    // for (var i = 0; i < service.user.favourites.length; i++) {
 	    //     var fav = service.user.favourites[i];
 	    //     if (fav.spotId == spotId) return true;

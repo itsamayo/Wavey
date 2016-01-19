@@ -218,18 +218,18 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     console.log('SpotCtrl->spot', spot);
     $scope.$on('spot:toggleFavourite', function (event, data) {
 	    // you could inspect the data to see if what you care about changed, or just update your own scope
-        $scope.isFavourited = LoginService.isFavourited($scope.spot.id);
+        $scope.isFavourited = LoginService.isFavourited($scope.region._id, $scope.spot.name);
         LoadingService.hide();
-	});
-  $scope.region = region;
-  $scope.spot = spot;
-	$scope.spot.webcamAvailable = true;//($scope.spot.webcamURL != '');
-	if ($scope.spot.webcamURL == '') {
-		$scope.spot.webcamURL = 'http://www.wavey.co.za/img/nocam.png';
-	}
+    });
+    $scope.region = region;
+    $scope.spot = spot;
+    $scope.spot.webcamAvailable = true;//($scope.spot.webcamURL != '');
+    if ($scope.spot.webcamURL == '') {
+    	 $scope.spot.webcamURL = 'http://www.wavey.co.za/img/nocam.png';
+    }
 
     $scope.isFavourited = LoginService.isFavourited($scope.region._id, $scope.spot.name);
-
+    console.log('$scope.isFavourited', $scope.isFavourited);
     $scope.sunRise = "...";
     $scope.sunset = "...";
     $scope.airTemp = "...";
@@ -252,7 +252,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     $scope.tideTime4 = "...";
 
     $scope.toggleFavourite = function () {
-        if (!LoginService.isLoggedIn()) {
+        if (!LoginService.user.isLoggedIn) {
             var alertPopup = $ionicPopup.alert({
                 title: 'Want to Favourite?',
                 template: 'Please Login or Signup to favourite this spot'

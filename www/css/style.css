@@ -590,7 +590,7 @@ a.autolinker {
 }
 
 .bubbleLeft {
-  margin-left: -40px;
+  margin-left: 5px;
 	position: relative;
 	display: inline-block;
 	max-width: 100%;
@@ -620,7 +620,7 @@ a.autolinker {
 
 .bubbleRight {
   text-align: left;
-  margin-right: -40px;
+  margin-right: 5px;
 	position: relative;
 	display: inline-block;
   min-width: 70px;

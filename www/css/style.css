@@ -381,9 +381,9 @@ at the bottom as the textarea resizes */
 }
 
 img.mainprofile-pic {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  width: 125px;
+  height: 125px;
+  border-radius: 20%;
   position: relative;
   padding-top: 10px;
   padding-left: 10px

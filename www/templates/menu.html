@@ -19,11 +19,11 @@
         <!--<ion-header-bar class="bar-new">
             <h1 class="bar-new title">My Menu</h1>
         </ion-header-bar>-->
-        <ion-content id="menu_bg" class="screen-menu">
+        <ion-content id="menu_bg" class="screen-menu">        
             <div class="row" ng-show="isLoggedIn">
                 <div class="col"></div>
                 <div class="exclaim" style="font-weight: bold; color: #009ec2">
-                    <i class="icon ion-person placeholder-icon custom-icon-setting"></i>&nbsp;{{service.user.username}}
+                    <img class="mainprofile-pic" ng-src="{{service.user.profilepic}}" />&nbsp;{{service.user.username}}
                 </div>
                 <div class="col"></div>
                 <div class="col"></div>

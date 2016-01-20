@@ -216,9 +216,9 @@ app.run(function ($ionicPlatform, $ionicPopup) {
     }
 
     // Just adding some dummy data so I know this is the device test..
-    user.set('name', 'ashketchum');
-    user.set('bio', 'something has to give');
-    user.save();
+    // user.set('name', 'ashketchum');
+    // user.set('bio', 'something has to give');
+    // user.save();
 
     var callback = function(data) {
       push.addTokenToUser(user);

@@ -543,7 +543,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     //$scope.messages = [];
     //do we really need these here?
     $scope.nickname = $stateParams.username;
-    $scope.status_message = "Welcome " + $stateParams.username + "!";
+    $scope.status_message = $stateParams.room + " Boardroom";
 
     var COLORS = ['#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#009688'];
     $scope.room = Socket.openRoom($stateParams.room);
@@ -652,6 +652,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
         return;
       $scope.room.sendMessage({
         username: $scope.nickname,
+        profilepic: $scope.service.user.profilepic,
         color: $scope.getUsernameColor($scope.nickname),
         message: $scope.message,
         socketId: Socket.socketId

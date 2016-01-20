@@ -8,7 +8,7 @@
                   'item item-avatar-left nopadding': (socketId != msg.socketId) && !msg.isLog,
                   'item item-divider noPadding noBg' : msg.isLog
                    }">
-                <img ng-hide="msg.isLog" ng-src="http://{{service.user.profilepic}}"/>
+                <img ng-hide="msg.isLog" ng-src="http://{{msg.profilepic}}"/>
                 <div ng-class="{
                   'bubbleRight item-text-wrap': (socketId == msg.socketId) && !msg.isLog ,
 			            'bubbleLeft item-text-wrap': (socketId != msg.socketId) && !msg.isLog}">   

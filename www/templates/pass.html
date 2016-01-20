@@ -5,19 +5,19 @@
             <button class="button button-clear" ng-click="closePassword()">Cancel</button>
         </div>
     </ion-header-bar>
-    <ion-content class="screen-calm">
+    <ion-content id="settings_bg" class="screen-calm" has-bouncing="true">
         <form>
             <div class="list">
-                <label class="item item-input ocean">
+                <label class="item item-input sky">
                     <span class="input-label">Old Password</span>
                     <input type="password" ng-model="data.password">
                 </label>
-				<label class="item item-input ocean">
+				<label class="item item-input sky">
                     <span class="input-label">New Password</span>
                     <input type="password" ng-model="data.newPassword">
                 </label>
-				<label class="item item-input ocean">
-                    <span class="input-label">Confirm New Password</span>
+				<label class="item item-input sky">
+                    <span class="input-label">Confirm Password</span>
                     <input type="password" ng-model="data.confirmNewPassword">
                 </label>
                 <label class="item">

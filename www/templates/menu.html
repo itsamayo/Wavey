@@ -5,14 +5,21 @@
       </ion-nav-back-button>
 
       <ion-nav-buttons side="left">
-          <button class="button button-icon button-calm ion-navicon" menu-toggle="left"></button>
+      <img menu-toggle="left" class="nav-pic" ng-src="http://{{service.user.profilepic}}" ng-show="isLoggedIn"/>
+      <button class="button button-icon button-calm ion-navicon" menu-toggle="left" ng-hide="isLoggedIn"></button>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="right">
+          <button class="button button-icon button-calm ion-android-favorite" ng-click="favourites()"></button>
+          <button class="button button-icon button-calm ion-coffee" ng-click="boardroom()"></button>
+          <button class="button button-icon button-calm ion-gear-a" ng-click="settings()"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
-      <div class="bar bar-footer" ng-show="isLoggedIn && !isInChat">
+      <!-- <div class="bar bar-footer" ng-show="isLoggedIn && !isInChat">
           <a href="#/app/favourites" class="button button-clear pull-left"><i class="icon ion-android-favorite placeholder-icon custom-icon-fav"></i></a>
           <a href="#/app/settings" class="button button-clear pull-right"><i class="icon ion-gear-a placeholder-icon custom-icon-set"></i></a>
-      </div>
+      </div> -->
   </ion-side-menu-content>
 
     <ion-side-menu side="left">

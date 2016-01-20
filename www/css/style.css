@@ -380,6 +380,14 @@ at the bottom as the textarea resizes */
   color: #009ec2;
 }
 
+img.nav-pic {
+  padding: 2px;
+  width: 32px;
+  height: 32px;
+  border-radius: 25%;
+  position: absolute;
+}
+
 img.mainprofile-pic {
   width: 125px;
   height: 125px;
@@ -557,6 +565,14 @@ a.autolinker {
   font-size: 50px;
   color : #009ec2;
 }
+}
+
+.bar-subheader {
+    top: 44px;
+    display: block;
+    height: 44px;
+    border: none !important;
+    padding: 10px !important;
 }
 
 /* CHAT STYLING */

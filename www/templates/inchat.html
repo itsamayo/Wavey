@@ -1,6 +1,9 @@
-<ion-view view-title="{{status_message}}">
-
-    <ion-content id="chat_bg" has-bouncing="true" class="has-header has-footer screen-calm" delegate-handle="mainScroll">
+<ion-view view-title="">    
+<div class="bar bar-subheader exclaim notify">
+     {{status_message}}
+    </div>
+    <ion-content id="chat_bg" has-bouncing="true" class="has-header has-footer screen-calm" delegate-handle="mainScroll">    
+    <br /><br />
         <ion-list class="list">
             <li style="background-color: transparent !important; border: none !important; padding-top: 4px !important; padding-bottom: 4px !important;"
                 ng-repeat="msg in room.messages" ng-class="{

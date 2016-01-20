@@ -78,18 +78,27 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
     $scope.logout = function () {
         $scope.service.toggleLogin(false);
     };   
-
-    // Full report COMING SOON
-    $scope.showAlert = function() {
-        var alertPopup = $ionicPopup.alert({
-            title: 'Coming soon!',
-            template: 'I know, we are just as excited!'
-        });
-        alertPopup.then(function(res) {
-            console.log('Thank you for understanding!');
-        });
+    
+     $scope.gochat = function (name, region) {
+        $state.go('app.inchat', { 'username': name, 'room': region });
     };
 
+    $scope.boardroom = function () {
+        $state.go('app.boardroom');
+    };
+
+    $scope.favourites = function () {
+        $state.go('app.favourites');
+    };
+
+    $scope.settings = function () {
+        $state.go('app.settings');
+    };
+
+    $scope.reg = function () {
+        $state.go('app.regions');
+    };
+    
 })
 
 .controller('LoginCtrl', function ($scope, LoginService, $ionicPopup, $state, $ionicModal, LoadingService, $http, $cordovaOauth) {
@@ -532,10 +541,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 })
 
 .controller('ChatCtrl', function($scope, $timeout, $stateParams, Socket, $ionicScrollDelegate, $sce, $cordovaMedia, _){
-
-     $scope.gochat = function (name, region) {
-        $state.go('app.inchat', { 'username': name, 'room': region });
-    };
 
     //replaced with $scope.room.messages
     //$scope.messages = [];

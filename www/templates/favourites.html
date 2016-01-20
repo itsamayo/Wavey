@@ -1,4 +1,4 @@
-<ion-view view-title="MY SPOTS">
+<ion-view view-title="">
     <ion-content id="fav_bg" class="screen-calm" has-bouncing="true">
         <div class="exclaim notify">
             <i class="icon ion-android-favorite placeholder-icon custom-icon-fav"></i><br /><br />Your favourites. In one place.
@@ -8,5 +8,9 @@
                 {{spot.name}} <i class="icon ion-chevron-right placeholder-icon custom-icon"></i>
             </ion-item>
         </ion-list>
+        <div class="exclaim" ng-show="spots == 0">
+            You don't seem to have any spots saved as favourites<br /><br />Why not add some for easier access?<br /><br />
+            <button class="button button-calm" ng-click="reg()"> Oki doki</button>
+        </div>
     </ion-content>
 </ion-view>

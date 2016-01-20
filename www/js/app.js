@@ -145,7 +145,6 @@ app.config(function($stateProvider, $urlRouterProvider) { //, $httpProvider) {
          views: {
              'menuContent': {
                  templateUrl: "templates/boardroom.html",
-                 controller: 'ChatCtrl'
              }
          }
      })

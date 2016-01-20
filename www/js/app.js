@@ -254,6 +254,14 @@ app.factory('Socket', function (socketFactory, _) {
   				//room.unreadMessages = true;
   			}
   		});
+  		
+  		socket.clientSocket.on('chatHistory', function(data) {
+  		  console.log('chatHistory', data);
+  			var room = _.find(socket.rooms, function(r) { return r.name == data.room; });
+  			if (!_.isUndefined(room)) {
+  				room.messages = data.messages;
+  			}
+  		});
 
       socket.clientSocket.on('Rooms', function(rooms) {
         console.log('rooms', rooms);

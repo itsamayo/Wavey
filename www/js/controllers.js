@@ -77,14 +77,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 
     $scope.logout = function () {
         $scope.service.toggleLogin(false);
-    };
-
-    $scope.gochat = function (name, region) {
-        //var username = $scope.service.user.username;
-        //console.log('gochat, username: ', name);
-        //console.log('gochat, profilePic: ', pic);
-        $state.go('app.inchat', { 'username': name, 'room': region });
-    };
+    };   
 
     // Full report COMING SOON
     $scope.showAlert = function() {
@@ -539,6 +532,11 @@ angular.module('starter.controllers', ['ngStorage', 'ngCordova'])
 })
 
 .controller('ChatCtrl', function($scope, $timeout, $stateParams, Socket, $ionicScrollDelegate, $sce, $cordovaMedia, _){
+
+     $scope.gochat = function (name, region) {
+        $state.go('app.inchat', { 'username': name, 'room': region });
+    };
+
     //replaced with $scope.room.messages
     //$scope.messages = [];
     //do we really need these here?

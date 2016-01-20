@@ -383,10 +383,8 @@ at the bottom as the textarea resizes */
 img.mainprofile-pic {
   width: 125px;
   height: 125px;
-  border-radius: 20%;
+  border-radius: 25%;
   position: relative;
-  padding-top: 10px;
-  padding-left: 10px
 }
 
 img.profile-pic {
@@ -616,6 +614,10 @@ a.autolinker {
 	margin-top: -7px;
 	left: -20px;
 	top: 40px;
+}
+
+.messageLeft {
+  color: #000 !important;
 }
 
 .bubbleRight {

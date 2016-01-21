@@ -15,7 +15,7 @@ var debug = false;
 
 function getURL(path) {
     //return (debug ? "app/" : "http://wavey.co.za/app/") + path;
-    return 'http://37.139.16.48:8080/' + path;
+    return 'http://37.139.16.48:8080/app/' + path;
 }
 
 app.service('DebugService', function () {

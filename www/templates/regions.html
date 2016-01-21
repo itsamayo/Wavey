@@ -7,14 +7,14 @@
         <ion-item ng-repeat=" region in regions" href="#/app/regions/{{region._id}}">
             {{region.name}}, <span>{{region.country | uppercase}}</span> <i class="icon ion-chevron-right placeholder-icon custom-icon"></i>
         </ion-item>
-    </ion-list>
+    </ion-list><br />
       <div ng-show="!isLoggedIn">
-      <div class="exclaim notify">
+      <div class="exclaim2 notify">
           Sign in to save spots for quick access, and chat with other surfers
       </div><br />
-      <ion-list>
+      <ion-list style="text-align: center;">
           <ion-item ng-click="login()">
-              <i class="icon ion-log-in placeholder-icon custom-icon"></i>Sign in
+              <i class="icon ion-unlocked placeholder-icon custom-icon"></i>Sign in
           </ion-item>
           <ion-item ng-controller="SignupCtrl" ng-click="signup()">
               <i class="icon ion-person-add placeholder-icon custom-icon"></i>Sign up

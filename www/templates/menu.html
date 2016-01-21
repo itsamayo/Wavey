@@ -10,8 +10,8 @@
       </ion-nav-buttons>
 
       <ion-nav-buttons side="right">
-          <button class="button button-icon button-calm ion-android-favorite" ng-click="favourites()"></button>
-          <button class="button button-icon button-calm ion-coffee" ng-click="boardroom()"></button>
+          <button ng-show="isLoggedIn" class="button button-icon button-calm ion-android-favorite" ng-click="favourites()"></button>
+          <button ng-show="isLoggedIn" class="button button-icon button-calm ion-coffee" ng-click="boardroom()"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>

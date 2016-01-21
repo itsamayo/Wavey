@@ -210,7 +210,8 @@ img.logo {
 .exclaim2 {
     font-size: 17px;
     padding:20px 10px 0px 20px;
-    color: #393939;
+    color: #fff;
+    text-align: center;
 }
 
 .exclaim3 {

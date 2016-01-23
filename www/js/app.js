@@ -201,7 +201,7 @@ app.run(function ($ionicPlatform, $ionicPopup) {
     var io = Ionic.io();
     var push = new Ionic.Push({
       "onNotification": function(notification) {
-        alert('Received push notification!');
+        // alert('Received push notification!');
       },
       "pluginConfig": {
         "android": {

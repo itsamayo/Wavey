@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.wavey383476" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.wavey.waveyapp" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Wavey</name>
   <description>&#xD;
-        An Ionic Framework and Cordova project.&#xD;
+        Surf reporting as it should be&#xD;
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">&#xD;
-      Ionic Framework Team&#xD;
+  <author email="info@ashleysanders.co.za" href="http://ashleysanders.co.za/">&#xD;
+      AK DSGN&#xD;
     </author>
   <content src="index.html"/>
   <access origin="*"/>

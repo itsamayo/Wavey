@@ -49,7 +49,7 @@ app.service('LoadingService', function($ionicLoading) {
 
 app.service('LoginService', function ($q, $http, $rootScope, $localStorage, DebugService, Socket, _) {
 	var service = {
-	    user: { id: undefined, username: '', email: '', favourites: [], isLoggedIn: false, rememberMe: false, profilepic: '' }
+	    user: { id: undefined, username: '', email: '', favourites: [], isLoggedIn: false, rememberMe: true, profilepic: '' }
 	};
 
 	service.loginUser = function (_email, _password) {

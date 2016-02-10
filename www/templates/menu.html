@@ -10,9 +10,9 @@
 
       <ion-nav-buttons side="right">
           <button ng-show="isLoggedIn" class="button button-icon button-calm ion-android-favorite" ng-click="favourites()"></button>
-          <button ng-show="isLoggedIn" class="button button-icon button-calm ion-android-chat" ng-click="boardroom()"></button>
+          <button ng-show="isLoggedIn" class="button button-icon button-calm ion-chatboxes" ng-click="boardroom()"></button>
           <button ng-show="!isLoggedIn" class="button button-icon button-calm ion-android-favorite" ng-click="login()"></button>
-          <button ng-show="!isLoggedIn" class="button button-icon button-calm ion-android-chat" ng-click="login()"></button>
+          <button ng-show="!isLoggedIn" class="button button-icon button-calm ion-chatboxes" ng-click="login()"></button>
           <img class="nav-pic" ng-click="settings()" ng-src="http://{{service.user.profilepic}}" ng-show="isLoggedIn"/>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -58,11 +58,11 @@
                     MY SPOTS
                 </ion-item>
                 <ion-item class="menu-reg" menu-close href="#/app/boardroom" ng-show="isLoggedIn">
-                    <i class="icon ion-coffee placeholder-icon custom-icon-chatmenu"></i>
+                    <i class="icon ion-chatboxes placeholder-icon custom-icon-chatmenu"></i>
                     BOARDROOM
                 </ion-item>
                 <ion-item class="menu-reg" menu-close ng-click="login()" ng-show="!isLoggedIn">
-                    <i class="icon ion-coffee placeholder-icon custom-icon-chatmenu"></i>
+                    <i class="icon ion-chatboxes placeholder-icon custom-icon-chatmenu"></i>
                     BOARDROOM
                 </ion-item>
                 <!--<ion-item menu-close href="#/app/chats" ng-show="isLoggedIn">

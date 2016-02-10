@@ -231,7 +231,7 @@ img.logo {
     border-color: #009ec2 !important;
     background: #009ec2 !important;
     border-top-width: 0px;
-    color: #fff; }    
+    color: #fff; }
 
 .item {
     border: none !important;
@@ -386,7 +386,7 @@ img.nav-pic {
   width: 32px;
   height: 32px;
   border-radius: 25%;
-  position: absolute;
+  /*position: absolute;*/
 }
 
 img.mainprofile-pic {

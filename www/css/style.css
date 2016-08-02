@@ -33,7 +33,7 @@ color: #009ec2;
 }
 
 .custom-icon-log {
-  color : #009ec2;
+  color : #fff;
 }
 
 .custom-icon-close {
@@ -86,12 +86,12 @@ img.logo {
 }
 
 .custom-icon-reg {
-  color : #009ec2;
+  color : #fff;
   font-size: 40px;
 }
 
 .custom-icon-regmenu {
-  color : #009ec2;
+  color : #fff;
 }
 
 .custom-icon-search {
@@ -117,7 +117,7 @@ img.logo {
 }
 
 .custom-icon-setmenu {
-  color : #009ec2;
+  color : #fff;
 }
 
 .custom-icon-chat {
@@ -140,11 +140,11 @@ img.logo {
 }
 
 .custom-icon-favmenu {
-  color : #009ec2;
+  color : #fff;
 }
 
 .custom-icon-chatmenu {
-  color : #009ec2;
+  color : #fff;
 }
 
 .fav-spot {
@@ -181,8 +181,8 @@ img.logo {
     color: #fff; }
 
 .bar-new {
-    border-color: #009ec1;
-    background: #009ec1;
+    border-color: #535353;
+    background: #535353;
     color: #fff; }
     .bar-new.title {
       color: #fff; }
@@ -679,43 +679,43 @@ a.autolinker {
 }
 
 #chat_bg {
-	background-image: url('../img/chat.jpg');
+	background-image: url('../img/zwartevilt.png');
 	background-size: cover;
 	background-position: 50% 0;
 }
 
 #main_bg {
-	background-image: url('../img/wave.jpg');
+	background-image: url('../img/zwartevilt.png');
 	background-size: cover;
 	background-position: 50% 0;
 }
 
 #fav_bg {
-  background-image: url('../img/wave.jpg');
+  background-image: url('../img/zwartevilt.png');
   background-size: cover;
   background-position: 70% 0;
 }
 
 #report_bg {
-  background-image: url('../img/wave2.jpg');
+  background-image: url('../img/zwartevilt.png');
   background-size: cover;
   background-position: 70% 0;
 }
 
 #settings_bg {
-	background-image: url('../img/wave.jpg');
+	background-image: url('../img/zwartevilt.png');
 	background-size: cover;
 	background-position: 50% 0;
 }
 
 #menu_bg {
-	background-image: url('../img/wave2.jpg');
+	background-image: url('../img/zwartevilt.png');
 	background-size: cover;
 	background-position: 8% 0;
 }
 
 #boardroom_bg {
-	background-image: url('../img/chat.jpg');
+	background-image: url('../img/zwartevilt.png');
 	background-size: cover;
 	background-position: 50% 0;
 }

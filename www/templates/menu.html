@@ -30,7 +30,7 @@
         <ion-content id="menu_bg" class="screen-menu">
             <div class="row" ng-show="isLoggedIn">
                 <div class="col"></div>
-                <div class="exclaim" style="font-weight: bold; color: #009ec2">
+                <div class="exclaim" style="font-weight: bold; color: #fff">
                     <img class="mainprofile-pic" ng-src="http://{{service.user.profilepic}}" /><br /><br />{{service.user.username}}
                 </div>
                 <div class="col"></div>
@@ -51,11 +51,11 @@
                 </ion-item>
                 <ion-item class="menu-reg" menu-close href="#/app/favourites" ng-show="isLoggedIn">
                     <i class="icon ion-android-favorite placeholder-icon custom-icon-favmenu"></i>
-                    MY SPOTS
+                    FAVOURITES
                 </ion-item>
                 <ion-item class="menu-reg" menu-close ng-click="login()" ng-show="!isLoggedIn">
                     <i class="icon ion-android-favorite placeholder-icon custom-icon-favmenu"></i>
-                    MY SPOTS
+                    FAVOURITES
                 </ion-item>
                 <ion-item class="menu-reg" menu-close href="#/app/boardroom" ng-show="isLoggedIn">
                     <i class="icon ion-chatboxes placeholder-icon custom-icon-chatmenu"></i>
@@ -71,11 +71,11 @@
                 </ion-item>-->
                 <ion-item class="menu-reg" menu-close href="#/app/settings" ng-show="isLoggedIn">
                     <i class="icon ion-gear-a placeholder-icon custom-icon-setmenu"></i>
-                    SETTINGS
+                    PROFILE
                 </ion-item>
                 <ion-item class="menu-reg" menu-close ng-click="login()" ng-show="!isLoggedIn">
                     <i class="icon ion-gear-a placeholder-icon custom-icon-setmenu"></i>
-                    SETTINGS
+                    PROFILE
                 </ion-item>
                 <ion-item class="menu-reg" nav-clear menu-close ng-click="login()" ng-show="!isLoggedIn" style="width: 100%;">
                     <i class="icon ion-unlocked placeholder-icon custom-icon-log"></i>
